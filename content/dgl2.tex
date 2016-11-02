@@ -1,0 +1,96 @@
+\chapter{Exakte Differentialgleichungen}
+Wir betrachten eine DGL der Form
+\[ (\ast)\qquad g(x,y)+h(x,y)y'=0 \]
+mit $ g,h\colon R\rightarrow\R $ stetig und $ R=J_1\times J_2 $, $ J_1,J_2\subseteq\R $ offene Intervalle.
+\begin{definition}
+	Die DGL $ (\ast) $ hei\ss t \deftxt{exakt}, falls eine Funktion $ F\colon R\rightarrow\R $ existiert, so dass
+	\[ \frac{\partial F}{\partial x}(x,y)=g(x,y)\text{ und }\frac{\partial F}{\partial y}=h(x,y) \]
+	f\"ur $ x,y\in R $.
+\end{definition}
+\begin{bemerkung}
+	Fassen wir $ (g,h)\colon R\rightarrow\R^2 $ als Vektorfeld auf, so hei\ss t obiges, dass $ F $ eine Stammfunktion des Feldes ist.
+	\[ \grad F=\left(\frac{\partial F}{\partial x},\frac{\partial F}{\partial y}\right)=(g,h) \]
+	Aus der Analysis 2 wissen wir, dass dies f\"ur $ g,h\in C^1(R) $ genau dann der Fall ist, wenn die Integrabilit\"atsbedingung $ \frac{\partial g}{\partial y}(x,y)=\frac{\partial h}{\partial x}(x,y) $ f\"ur $ (x,y)\in R $ erf\"ullt ist. 
+\end{bemerkung}
+\begin{beispiel}
+	\[ \underbrace{xy^2-1}_{g}+\underbrace{x^2y-1}_{h}y'=0 \]
+	Dann gilt \[ \frac{\partial g}{\partial y}=2xy=\frac{\partial h}{\partial x}\forall (x,y)\in\R\times\R. \]
+	D.h. die obige DGL ist exakt auf $ \R\times\R $.
+\end{beispiel}
+Sei die DGL $ (\ast) $ exakt, $ F $ eine Stammfunktion und $ y=y(x) $ eine L\"osung auf $ I\subseteq J_1 $. Betrachte $ z\colon I\rightarrow\R $, $ z(x)=F(x,y(x)) $. Dann
+\[ \frac{\dd z}{\dd x}=\frac{\partial F}{\partial x}\cdot 1+\frac{\partial F}{\partial y}y'=g(x,y)+h(x,y)y'=0. \]
+D.h. $ z $ ist konstant.\\
+Ist umgekehrt $ y\colon I\rightarrow J_2 $ eine differenzierbare Funktion, sodass $ z(x)=F(x,y(x)) $ konstant ist, dann ist $ \frac{\dd z}{\dd x}=0 $ und nach  obiger Rechnung ist $ y=y(x) $ eine L\"osung. D.h. die L\"osungen sind genau die Funktionen $ y=y(x) $ f\"ur die $ F(x,y(x)) $ auf einem Intervall konstant ist.\\
+Also finden wir alle L\"osungen, indem wir die Gleichung
+\[ F(x,y)=c\in\ran(F) \]
+differenzierbar nach $ y $ aufl\"osen, d.h. $ y\colon I\rightarrow\R $ differenzierbar finden mit $ F(x,y(x))=c $ f\"ur alle $ x\in I $ und $ I\subseteq J_1 $. Die L\"osungen werden von $ c $ abh\"angen, wir sprechen dann von der \deftxt{allgemeinen L\"osung}.\\
+Um obige Gleichung nun aufzul\"osen, verwenden wir den Satz \"uber implizite Funktionen: Die Funktion $ G\colon R\rightarrow\R $ sei in einer Umgebung von $ (x_0,y_0)\in R $ stetig differenzierbar. Es gelte $ G(x_0,y_0)=0 $ und $ \frac{\partial G}{\partial y}(x_0,y_0)\neq  0 $. Dann existiert $ \delta>0 $ und genau eine Funktion $ y\colon ]x_0-\delta,x_0+\delta[\rightarrow J_2 $ derart, dass $ G(x,y(x))=0 $ f\"ur $ x\in]x_0-\delta, x_0+\delta[ $ und $ y(x_0)=y_0 $. Insbesondere ist $ y $ differenzierbar.\\
+W\"ahle $ x_0,y_0\in R $ mit $ F(x_0,y_0)=c $ (oder wenn das AWP mit Anfangsbedingung $ y(x_0)=y_0 $ betrachtet wird, definiere $ c\coloneqq F(x_0,y_0) $) und setze $ G(x,y)=F(x,y)-c $. Dann ist $ G $ stetig differenzierbar, $ G(x_0,y_0)=0 $ und
+\[ \frac{\partial G}{\partial y}(x_0,y_0)=\frac{\partial F}{\partial y}(x_0,y_0)=h(x_0,y_0). \]
+Wenn wir also zus\"atzlich $ h(x_0,y_0)\neq 0 $ fordern, so erhalten wir, dass das AWP lokal eindeutig l\"osbar ist. Wir haben also folgendes bewiesen:
+\begin{satz}
+	Das AWP
+	\[ \begin{cases}
+	g(x,y)+h(x,y)y'=0\\
+	y(x_0)=y_0
+	\end{cases} \]
+	mit exakter DGL und $ h(x_0,y_0)\neq 0 $ ist lokal eindeutig l\"osbar.
+\end{satz}
+Um L\"osungen zu finden, m\"ussen wir nach obigem eine Stammfunktion finden und dann aufl\"osen.\\
+Ersteres machen wir wie folgt: Wegen $ \frac{\partial F}{\partial x}=g $ muss
+\[ F(x,y)=\int g(x,y)\dd x+ \varphi(y) \]
+gelten und wegen $ \frac{\partial F}{\partial y}=h $ folgt
+\[ \frac{\dd }{\dd y}\varphi(y)=\frac{\partial}{\partial y}F(x,y)-\frac{\partial}{\partial y}\int g(x,y)\dd x=h(x,y)-\frac{\partial}{\partial y}\int g(x,y)\dd x, \]
+d.h.
+\[ \varphi(y)=\int\left( h(x,y)-\frac{\partial}{\partial y}\int g(x,y)\dd x\right)\dd y. \]
+\begin{beispiel}
+	\[ \underbrace{(xy^2-1)}_{g}+\underbrace{(x^2y-1)}_{h}y'=0 \]
+	\[ \int g(x,y)\dd x=\int xy^2-1\dd x=\frac{1}{2}x^2y^2-x \]
+	\[ \varphi(y)=\int\left(x^2y-1-\frac{\partial}{\partial y}\left(\frac{1}{2}x^2y^2-x\right)\right)\dd y=\frac{x^2y^2}{2}-y-\frac{x^2y^2}{2}=-y \]
+	Es folgt:
+	\[ F(x,y)=\frac{1}{2}x^2y^2-x-y. \]
+	\begin{itemize}
+		\item Die allgemeine L\"osung erh\"alt man durch aufl\"osen von
+		\[ \frac{1}{2}x^2y^2-x-y=c \]
+	    nach $ y $.
+	    \item Das AWPzur Anfangsbeidngung $ y(0)=0 $ hat eine eindeutige L\"osung, da $ h(0,0)=-1\neq 0 $. $ F(0,0)=0 $, d.h. wir m\"ussen $ \frac{1}{2}x^2y^2-x-y=0 $ aufl\"osen. F\"ur $ x\neq 0 $:
+	    \[ y^2-\frac{2}{x^2}y-\frac{2}{x}=0\Rightarrow y_{1,2}=\frac{1}{x^2}\pm\sqrt{\left(\frac{1}{x^2}\right)^2+\frac{2}{x}}=\frac{1}{x^2}\pm\frac{1}{x^2}\sqrt{1+2x^3}\Rightarrow y(x)=\begin{cases}
+	    \frac{1}{x^2}-\frac{1}{x^2}\sqrt{1+2x^3},&x\neq 0\\
+	    0,&x=0
+	    \end{cases} \]
+	    ist die L\"osung f\"ur $ x $ geeignet nah bei Null.
+	 \end{itemize}
+\end{beispiel}
+\begin{bemerkung}
+	Wenn $ g(x,y)+h(x,y)y'=0 $ nicht exakt ist, kann man versuchen, einen \deftxt{integrierenden Faktor}, d.h. $ M=M(x,y)\neq 0 $ mit $ Mg(x,y)+Mh(x,y)y'=0 $ exakt, zu finden. F\"ur $ M\in C^1 $ ist die Exaktheit \"aquivalent zu
+	\[ \frac{\partial }{\partial y}(Mg)=\frac{\partial}{\partial x}(Mh)\Leftrightarrow\frac{\partial M}{\partial y}g+M\frac{\partial g}{\partial y}=\frac{\partial M}{\partial x}h+M\frac{\partial h}{\partial x}. \]
+	Letzteres ist eine partielle Differentialgleichung (i.A. noh schlimmer), kann aber in Beispielen durch Ans\"atze, z.B. $ M=M(x) $, $ M=M(y) $, $ M=M(xy) $, $ M=M\left(\frac{x}{y}\right) $ gel\"ost werden.
+\end{bemerkung}
+\newpage
+\begin{beispiel}
+	\[ \underbrace{(xy-1)y}_{g}+\underbrace{x(xy-3)}_{h}y'=0 \]
+	Ansatz $ M=M(xy) $ liefert (Schreibe $ M_y\equiv\frac{\partial M}{\partial y} $ usw., $ \frac{\dd M}{\dd z}\eqqcolon M' $, beachte $ M=M(z) $):
+	\begin{align*} &(Mg)_y=M'x(xy^2-y)+M(2xy-1)\\ 
+	 -&(Mh)_x=M'y(x^2y-3x)+M(2xy-3)\\
+	 &(Mg)_y-(Mh)_x=M'\cdot 2xy+M\cdot 2\neq 0 \end{align*}
+	 Wir m\"ussen also $ M'z+M=0 $, d.h. $ z\frac{\dd M}{\dd z}=-M $, l\"osen, und das k\"onnen wir:
+	 \[ \int\frac{\dd M}{M}=-\int\frac{\dd z}{z}\Rightarrow\ln |M|=-\ln|z|\Rightarrow|M|=e^{-\ln|z|}\Rightarrow M=e^{-\ln|z|}=(e^{\ln|z|})^{-1}=\frac{1}{|z|}. \]
+	 Man sieht, dass $ M(x,y)=\frac{1}{xy} $ obiges erf\"ullt. D.h.
+	 \[ Mg+Mhy'=\left(y-\frac{1}{x}\right)+\left(x-\frac{3}{y}\right)\frac{\dd y}{\dd x}=0 \]
+	 ist exakt. Obige DGL k\"onnen wir jetzt wie vorher behandeln und da $ M(x,y)\neq 0 $ ist, sind die L\"osungen von $ Mg+Mhy'=0 $ dieselben wie die von $ g+hy'=0 $.
+\end{beispiel}
+Es bleibt noch der versprochene Existenz- und Eindeutigkeitssatz f\"ur die getrennten Variablen. Betrachte
+\[ (AWP)\begin{cases}
+y'=g(x)h(x)\\ y(x_0)=y_0
+\end{cases} \]
+mit $ g\colon J_1\rightarrow\R $, $ h\colon J_2\rightarrow\R $ stetig, $ h(y)\neq 0 $ auf $ J_2 $. Die DGL k\"onnen wir also als $ g(x)-\frac{1}{h(y)}y'=0 $ schreiben. Wie vor 3.5 ist
+\[ F(x,y)=\int_{x_0}^x g(t)\dd t-\int_{y_0}^y\frac{1}{h(t)}\dd t \]
+eine Stammfunktion f\"ur beliebige $ x_0\in J_1 $, $ y_0\in J_2 $. Ferner ist $ \frac{1}{h(y_0)}\neq 0 $. D.h. als Spezialfall von 3.4 erhalten wir:
+\begin{satz}
+	Unter obigen Annahmen ist $ (AWP) $ in einer hinreichend kleinen Umgebung von $ x_0 $ eindeutig l\"osbar, und zwar dadurch, dass man
+	\[ \int_{y_0}^y\frac{\dd t}{h(t)}=\int_{x_0}^x g(t)\dd t \]
+	nach $ y $ aufl\"ost. Alternativ kann man auch
+	\[ \int\frac{\dd y}{h(y)}=\int g(x)\dd x+c \]
+	nach $ y $ aufl\"osen und $ c $ der Anfangsbedingung anpassen.
+\end{satz}
+

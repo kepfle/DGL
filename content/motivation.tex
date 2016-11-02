@@ -1,0 +1,164 @@
+\chapter{Motivation, Beispiele, Grundaufgaben}
+Gesucht: Funktionale Beziehungen zwischen zwei Gr\"o\ss en (z.B. Temperatur einer Flüssigkeit in Abbh\"angigkeit von der Zeit). $ \rightarrow  $Betrachte Ableitungen und finde Beziehungen zwischen Funktion, Ableitungen, weiteren Funktionen, Konstanten.$ \rightarrow $Differentialgleichung (DGL).\\
+\begin{beispiel}[Bier]
+	Auf dem Weg zu einem Grillfest halten sie unterwegs an einer Tankstelle und kaufen ein Sixpack Bier. Das Bier stand bereits den ganzen Tag im $ 7^\circ C $ kalten K\"uhlregal. Ihr Auto hat eine Klimaanlage, aber $ 7^\circ $ sind ihnen zu kalt. Andererseits wissen sie, dass ihre Freunde auf dem Grillfest sehr entt\"auscht w\"aren, wenn das Bier bei ihrer Ankunft w\"armer als $ 10^\circ C $ ist. Welche Temperatur stellen sie an der Klimaanlage ein?\\
+	Sei $ T(t) $ die Temperatur zum Zeitpunkt $ t\geq 0 $. Sie fahren bei $ t=0 $ los und kommen bei $ t=90 $ an. Wir wissen $ T(0)=T_0=7 $. Sei $ T_A\geq 7 $ die Temperatur der Klimaanlage. Wir nehmen an, dass $ T=T(t) $ differenzierbar ist. Aus Erfahrung wissen wir, dass das Bier um so schneller warm wird, je h\"oher die Au\ss entemperatur ist. Sind Bier- und Au\ss entemperatur gleich, dann \"andert sich die Biertemperatur gar nicht. Au\ss erdem muss $ T'(t)\geq 0 $ sein, da die Biertemperatur ansteigt. Wir nehmen die einfachste Funktion mit diesen drei Eigenschaften:
+	\[ (\ast)\begin{cases}
+	 T'(t)=k(T_A-T(t)), t\geq 0\\
+	 T(0)=T_0
+	\end{cases} \]
+	wobei $ k\geq 0 $ eine (von der Biersorte abh\"angige) Konstante ist.\\
+	Angenommen, wir haben f\"ur jeweils $ k, T_0, T_A $ eine Funktion $ T=T(t) $ mit der Eigenschaft $ (\ast) $, dann k\"onnen wir das Problem l\"osen:
+	\begin{enumerate}
+		\item[1)] Wir fahren z.B. 10 Minuten bei Temperatur $ 25^\circ $ und messen dann die Biertemperatur. Mit der L\"osung von $ (\ast) $ k\"onnen wir dann den numerischen Wert von $ k $ bestimmen.
+		\item[2)] Nun nehmen wir die L\"osung von $ (\ast) $ mit dem $ k $ aus 1) und der in 1) gemessenen Temperatur. Damit k\"onnen wir dann dasjenige $ T_A $ bestimmen, welches $ T(80)=10 $ liefert.\\
+		Wir brauchen also die L\"osung von $ (\ast) $. Wenn $ T_A=0 $ ist, dann kann man eine L\"osung von $ T'(t)=-kT(t) $ leicht raten, n\"amlich $ T_1(t)=e^{-kt} $ und nat\"urlich sind $ T_c=ce^{-kt} $ f\"ur $ c\in\R $ auch L\"osungen. Wir haben also L\"osungen f\"ur $ T'(t)+kT(t)=0 $, wollen welche f\"ur $ T'(t)+kT(t)=kT_A $.\\
+		Da $ T'_c(t)=(T_c(t)+B)' $ f\"ur jede Konstante $ B\in\R $ gilt, versuchen wir es mit $ T_{c,B}(t)=T_c(t)+B $. Dann
+		\[ T'_{c,B}(t)+kT_{c,B}(t)=-kT_c(t)+k(T_c(t)+B)=-kT_c(t)+kT_c(t)+kB=kB \]
+		und wenn wir $ B=T_A $ w\"ahlen, erhalten wir L\"osungen
+		\[ T_{c,T_A}(t)=ce^{-kt}+T_A \]
+		der Gleichung in $ (\ast) $. Schlie\ss lich wollen wir noch $ T(0)=T_0 $, also
+		\[ T_{c,T_A}(0)=ce^0+T_A=T_0 \]
+		d.h. wir m\"ussen $ c=T_0-T_A $ w\"ahlen und bekommen die L\"osung
+		\[ T(t)=(T_0-T_A)e^{-kt}+T_A \]
+		von $ (\ast) $.
+	\end{enumerate}
+	Jetzt zur\"uck zum Bier: Sagen wir nach 10min bei $ 25^\circ $ hat sich das Bier auf $ 8^\circ $ erw\"armt. D.h.
+	\[ 8=T(10)=(7-25)e^{-k\cdot 10}+25\Rightarrow 18e^{-k\cdot 10}=10\Rightarrow e^{-k\cdot 10}=\frac{17}{18}\Rightarrow -k\cdot 10=\log\frac{17}{18}\Rightarrow k\approx 0.0025 \]
+	Nun verbleiben 80min Fahrt und wir starten mit $ T_0=8 $. Wir wollen $ T(80)=10 $, d.h.
+	\[ T(80)=(8-T_A)e^{-k\cdot 80}+T_A=10 \]
+	\[ 8e^{-k\cdot 80}-T_Ae^{-k\cdot 80}+T_A=10\Rightarrow T_A(1-e^{-k\cdot 80})=10-8e^{-k\cdot 80}\Rightarrow T_A\approx 19.10 \]
+	D.h. Einstellen der Klimaanlage auf $ 19^\circ C $ garantiert bei Ankunft eine Biertemperaatur von $ \leq 10^\circ $ und l\"asst uns gleichzeitig so wenig wie m\"oglich frieren.
+\end{beispiel}
+\begin{beispiel}[Harmonischer Oszillator]
+	Wir betrachten eine Feder, daran befestigt ein Gewicht der Masse $ m $, $ g $ ist die Erdbeschleunigung. D.h. es wirkt eine Kraft $ F_g=mg $. Gleichzeitig wirkt eine Federkraft $ F_f=-kx $, die proportonial zur Auslenkung und der Auslenkungsrichtung entgegengesetzt ist. Hier ist bei $ x=0 $ die Ruhelage und $ k $ ist die Federkonstante.\\
+	Wir wollen $ x=x(t) $, d.h. die Position des Schwingers in Abh\"angigkeit von der Zeit $ t\geq 0 $ bestimmen, wenn wir den Schwinger zur Zeit $ t=0 $ auslenken, $ x(0)=X_0 $, und mit einer Geschwindigkeit $ \dot x(0)=v_0 $ in Gang setzen. $ \dot x=\dot x(t)\equiv x'(t) $ ist die Geschwindigkeit des Schwingers und $ \ddot x=\ddot x(t) $ die Beschleunigung.\\
+	Die am Schwinger ziehenden Kr\"afte verursachen eine Beschleunigungs\"anderung, d.h. die zu l\"osende Gleichung ist
+	\[ \begin{cases}
+	\ddot x(t)=mg-kx(t)\\ x(0)=x_0\\ \dot x=v_0
+	\end{cases} \]
+\end{beispiel}
+\begin{beispiel}[Exponentielles Wachstum]
+	Wir betrachten eine Population und $ N(t) $ bezeichne die Anzahl der Nitglieder derselben zur Zeit $ t\geq 0 $. Wir wollen $ N=N(t) $. Wenn wir zu einem Zeitpunkt $ t $ und zu einem Zeitpunkt $ t+1>t $ ein wenig sp\"ater die Anzahl der Mitglieder vergleichen, erhalten wir die \"Anderung
+	\[ \Delta N=N(t+\Delta t)-N(t) \]
+	Es ist sinnvoll anzunehmen, dass $ \Delta N $ proportional zur anf\"anglichen Anzahl $ N(t) $ und auch proportional zum (kleinen!) Zeitintervall $ \Delta t $ ist. D.h. $ \Delta N\approx \alpha N(t)\Delta t $ f\"ur eine Konstante $ \alpha>0 $. Die Annahme bedeutet grob gesagt, dass sich der Zuwachs verdoppelt, wenn man die anf\"angliche Mitgliederzahl verdoppelt oder die Zeitspanne verdoppelt. Dies ist bei kleinen Zeitspannen eine realistische Annahme, bei gro\ss en nicht, da die hinzukommenden Individuen ja auch zum Wachstum beitragen. Wir erhalten $ \frac{\Delta N}{\Delta t}\approx\alpha $ bzw. f\"ur $ \Delta t\rightarrow 0 $:
+	\[ \begin{cases}
+	N'(t)=\alpha N(t)\\N(0)=N_0
+	\end{cases} \]
+\end{beispiel}
+\begin{beispiel}[Kettenlinie]
+	Betrachte eine zwischen zwei Pfosten h\"angende Kette. Wir wollen wissen, welche Funktion die Form der Kette beschreibt. Zun\"achst w\"ahlen wir ein Koordinatensystem derart dass $ y- $Achse durch den tiefsten Punkt $ C $ verl\"auft.\\
+	$ P=P(x,y) $ sei ein beliebiger Punkt, $s(x)$ sei die L\"ange des Bogens $ CP $ und $ \gamma $ das konstante Gewicht der Kette pro L\"angeneinheit. In $ P $ wirkt eine tangentiale Kraft $ F $, die wir in eine vertikale und eine horizontale Komponente zerlegen. Sei $ H $ die Kraft, die in $ C $ horizontal wirkt. Das Kettenst\"uck $ CP $ ist im Gleichgewicht, wenn $ F\cos\alpha=H $ und $ F\sin\alpha=\gamma\cdot s $. Durch Division erh\"alt man nun
+	\[ \tan\alpha=\frac{\gamma s}{H}. \]
+	Mit $ \tan\alpha=\frac{\Delta y}{\Delta x} $ und $ \Delta x\rightarrow 0 $ dann
+	\[ \frac{\dd y}{\dd x}=y'(x)=\frac{\gamma s(x)}{H}. \]
+	Nochmaliges differenzieren liefert
+	\[ y''(x)=\frac{\gamma}{H}s'(x). \]
+	Aus der Analysis 2 haben wie die Bogenl\"angenformel
+	\[ s(x)=\int_0^x\sqrt{1+\left(\tfrac{\dd y}{\dd x}\right)'}\dd t \]
+	und damit
+	\[ \begin{cases}
+	\frac{H}{\gamma}y''=\sqrt{1+y'^2}\\y(x_a)=y_a\\y(x_b)=y_b
+	\end{cases} \]
+	Wir bemerken, dass hier im Gegensatz zu den vorherigen Beispielen Randwerte statt Anfangswerten zus\"atzlich zur Differentialgleichung gegeben sind.
+\end{beispiel}
+Nach diesen einf\"uhrenden Beispielen formalisieren wir unsere Notation und formulieren die Aufgaben die wir uns stellen wollen.\\
+\begin{definition}
+	Sei $ D\subseteq \R^{n+2} $, $ F\colon D\rightarrow\R $. Die Gleichung
+	\[ F(x,y,y',...,y^{(n)})=0 \]
+	hei\ss t \deftxt{Differentialgleichung $ n- $ter Ordnung}.\\
+	Sei $ I $ ein Intervall, $ y\colon I\rightarrow\R $ sei eine Funktion der Klasse \[ C^n(I)=\lbrace f\colon I\rightarrow\R\mid f\;\;n-\text{mal stetig differenzierbar}\rbrace, \]
+	$ y=y(x) $ hei\ss t \deftxt{L\"osung} der Differentialgleichung, falls gilt
+	\[ F(x,y(x),y'(x),...,y^{(n)}(x))=0 \]
+	f\"ur alle $ x\in I $.
+\end{definition}
+\begin{beispiel}
+	Betrachte das erste Beispiel (Bier), d.h. $ T'=k(T_A-T) $. Schreibe dies als \[ T'-kT_A+kT =0.\] Setze $ n=1 $, definiere $ D\subseteq\R^{n+2}=\R^3 $ per $ [0,\infty[\times\R^2 $ und
+	\[ F\colon D\rightarrow\R,\quad F(x_1,x_2,x_3)=x_3-kT_A+kx_2. \]
+	Damit ist $ T(t,T,T')=0 $ gerade die Differentialgleichung.\\
+	$ D $ h\"atten wir auch anders w\"ahlen k\"onnen, aber wir wollten $ (\ast) $ ja f\"ur $ t\geq 0 $ l\"osen.\\
+	Im Beispiel hatten wir uns bereits \"uberlegt, dass
+	\[ T(t)=(T_0-T_A)e^{-kt}+T_A \]
+	f\"ur $ t\geq 0 $ die Gleichung l\"ost, also ist $ T=T(t) $ mit
+	\[ T\colon [0,\infty[\rightarrow\R,\quad T(t)=(T_0-T_A)e^{-kt}+T_A \]
+	eine L\"osung der Differentialgleichung im Sinne von \ref{def1.1}.  
+\end{beispiel}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item Wenn wir eine DGL notieren benutzen wir h\"aufig die gleichen Buchstaben die wir auch f\"ur die L\"osung und deren Ableitung benutzen. Das ist nicht ganz korrekt, aber sehr praktisch und ok, solange wir das im Kopf behalten.
+		\item Oft treten explizite DGLn
+		\[ y^{(n)}=f(x,y,y',...,y^{(n-1)}) \]
+		auf. Das ist der Spezialfall
+		\[ F(x,y,y',...,y^{(n)})=f(x,y.y'....,y^{(n-1)})-y^{(n)}. \]
+	\end{enumerate}
+\end{bemerkung}
+\begin{definition}
+	Wir betrachten die DGL 1. Ordnung
+	\[ y'=F(x,y). \]
+	$ y\colon I\rightarrow\R $ sei eine L\"osung auf $ I $, d.h. $ y'(x)=f(x,y(x)) $ gilt f\"ur alle $ x\in I $.\\
+	$ y'(x_1)=f(x_1,y_1) $ ist gerade der Anstieg der L\"osung $ y=y(x) $ in $ x_1 $, und $ \tan\tau=f(x_1,y_1) $.
+	\begin{enumerate}
+		\item Sei $ (x_1,y_1)\subseteq D(f) $ (Definitionsbereich von $ f $). Dann hei\ss t das Tripel $ (x_1,y_1,f(x_1,y_1)) $ \deftxt{Linienelement} der DGL $ y'=f(x,y) $.
+		\item Die Menge aller Linienelemente hei\ss t \deftxt{Richtungsfeld} der DGL.
+		\item Wir zeichnen das Richtungsfeld, indem an Punkte $ (x_1,y_1)\in\R^2 $ eine Linie mit Steigung $ f(x_1,y_1) $ anheften. Es kann sinnvoll sein, die Punkte $ (x_1,y_1) $ auf Isoklinen $ \lbrace (x_1,y_1)\mid f(x_1,y_1)=\alpha\rbrace $, $ \alpha\in\R $, zu w\"ahlen. Hier sind dann die zu zeichnenden Linien parallel.
+	\end{enumerate}
+\end{definition}
+\begin{beispiel}
+	$ y'=-\frac{x}{y} $, d.h. $ f(x,y)=-\frac{x}{y} $, $ D(f)=\R\times(\R\setminus\lbrace 0\rbrace) $.
+	\begin{description}
+		\item[1. Fall: $ \alpha=0 $:] $ 0=-\frac{x}{y}\Rightarrow x=0, y\neq 0 $ und $ \tan\tau=0\Rightarrow\tau =0 $.
+		\item[2. Fall: $ \alpha\neq 0 $:] $ \alpha=-\frac{x}{y}\Rightarrow y=-\frac{1}{\alpha}x $ und $ \tan\tau=\alpha\Rightarrow (\tan\tau)\cdot\left(-\frac{1}{\alpha}\right)=-1 $.
+	\end{description}
+\end{beispiel}
+\begin{bemerkung}
+	\ref{def1.2} suggeriert, dass $ y=y(x) $ eine L\"osung der DGL ist, wenn $ y=y(x) $ 'in das Richtungsfeld passt'. Im Beispiel w\"urde man also vermuten, dass die L\"osung Kreissube $ y=\pm\sqrt{c^2-x^2} $ sind.
+\end{bemerkung}
+\begin{bemerkung}[Grundaufgaben f\"ur das Anfangswertproblem]
+	\[ (AWP)\begin{cases}
+	y'=f(x,y)\\y(x_0)=y_0
+	\end{cases} \]
+	wobei $ f\colon G\rightarrow\R^2 $, $ G\subseteq\R^2 $ ein Gebiet (d.h. offen, nichtleer, zusammenh\"angend), $ (x_0,y_0)\in G $.
+	\begin{description}
+		\item[Aufgabe 1:] Bestimmung von L\"osung: Das ist nur in wenigen F\"allen m\"oglich!
+		\item[Aufgabe 2:] Existenz- und Einzigkeitsprobleme: Abstrakter Beweis, dass unter gewissen Voraussetzungen (an $ f $, $ G $, $ x_0,y_0 $) L\"osungen existieren bzw. genau (oder h\"ochstens) eine L\"osung existiert.\\
+		Hierbei k\"onnen L\"osungen lokal existieren, d.h. es gibt ein $ \e>0 $, eine Funktion $ y\colon ]x_0-\e,x_0+\e[\rightarrow\R $ mit $ y'(x)=f(x,y(x)) $ f\"ur $ x\in]x_0-\e,x_0+\e[ $ und $ y(x_0)=y_0 $. Sie kann aber auch global existieren, im Fall von $ G $ wie oben 'bis zum Rand von $ G $ gehen' oder falls $ G=\R^2 $ ist, auf ganz $ \R $ existieren.
+		\item[Aufgabe 3:] Abh\"angigkeit der L\"osungen von den Anfangswerten, betrachte
+		\[ (AWP)^\ast \begin{cases}
+		y'=f(x,y)\\y(x_0)=y_\e
+		\end{cases} \]
+		mit $ \e>0 $ klein. Dann stellt sich die Frage, ob die L\"osung $ y=y(x) $ und $ y^\ast=y^\ast(x) $ 'nah beieinander bleiben' oder nicht. 
+	\end{description}
+\end{bemerkung}
+\begin{beispiel}
+	\begin{enumerate}
+		\item[]
+		\item 1.1 bis 1.4 sind Beispiele in denen man explizite L\"osungen finden kann. Macht man die rechte Seite geeignet kompliziert, wird klar, dass 1.1 bis 1.4 nicht der Normalfall sein werden.
+		\item Das AWP
+		\[ \begin{cases}
+		\dot x=\sqrt x\\ x(0)=0
+		\end{cases} \]
+		hat zwei L\"osungen, $ x(t)=0 $ und $ x(t)=\frac{t^2}{4} $. AWPs sind also i.A. nicht eindeutig l\"osbar.
+		\item Die DGL $ y'^2+1=0 $ hat gar keine L\"osung. D.h. AWPs m\"ussen \"uberhaupt nicht l\"osbar sein (f\"ur keine Anfangsbedingung!).
+		\item Das AWP aus 1.9,
+		\[ \begin{cases}
+		y'=-\frac{x}{y}\\y(x_0)=y_0
+		\end{cases}, \]
+		hat eine lokale L\"osung f\"ur $ x_0=0 $, $ y_0=1 $, n\"amlich $ y(x)=\sqrt{1-x^2} $, sagen wir f\"ur $ x\in\left]-\frac{1}{2}.\frac{1}{2}\right[ $. Obwohl wir f\"ur z.B. $ G=\R\times\R_{>0} $ nehmen k\"onnen, gibt es keine L\"osung auf ganz $ \R $. Die L\"osung oben k\"onnen wir fortsetzen zu $ y\colon]-1,1[\rightarrow\R $, $ y(x)=\sqrt{1-x^2} $, aber mehr geht nicht.
+		\item Das AWP aus 1.3,
+		\[ (AWP)\begin{cases}
+		N'(t)=\alpha N(t),\alpha>0\\N(0)=N_0
+		\end{cases}, \]
+		ist eindeutig l\"osbar: $ N(t)=N_0e^{\alpha t} $ ist eine L\"osung auf $ \R $.\\
+		Sei $ \tilde N=\tilde N(t) $ eine beliebige L\"osung. Dann 
+		\[ (\tilde N(t)e^{-\alpha t})'=\tilde N'(t)e^{-\alpha t}-\alpha\tilde N(t)e^{-\alpha t}=e^{-\alpha t}(\tilde N'(t)-\alpha\tilde N(t))=0 \]
+		$ \tilde N(t)e^{-\alpha t} $ ist konstant, d.h. es existiert $ c\in\R $ mit $ \tilde N(t)= c\cdot e^{\alpha t} $, insbesondere $ \tilde N(0)=c $. Da $ \tilde N(0)=N_0 $, ist $ c=N_0 $ und somit ist \[ \tilde N(t)=N_0e^{\alpha t}=N(t). \]
+		Die L\"osungen existieren alle global. Wenn wir $ N_0 $ variieren, werden sich f\"ur gro\ss e $ t $ die L\"osungen beliebig weit voneinander entfernen.
+		\[ (AWP^\ast)\begin{cases}
+		N'(t)=\alpha N(t)\\N(0)=N_0+\e
+		\end{cases} \] 
+		$ N^\ast(t)=(N_0+\e)e^{\alpha t} $ l\"ost $ (AWP^\ast) $ eindeutig.
+		\[ |N(t)-N^\ast(t)|=|N_0e^{\alpha t}-(N_0+\e)e^{\alpha t}|=\e e^{\alpha t} \]
+		F\"ur $ \alpha<0 $ w\"urde die Differenz der L\"osungen f\"ur $ t\to\infty $ gegen Null gehen, sie w\"aren 'unempfindlich' gegen \"Anderungen der Anfangsbedingung.
+	\end{enumerate}
+\end{beispiel}

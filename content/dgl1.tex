@@ -1,0 +1,57 @@
+\chapter{Differentialgleichungen mit getrennten Variablen}
+In der Situation von 1.8 (DGL 1. Ordnung) betrachten wir den Spezialfall
+\[ y'=f(x,y)=g(x)h(y) \]
+mit $ g\colon I_1\rightarrow\R $, $ h\colon I_2\rightarrow\R $ stetig, $ I_1,I_2 $ beschr\"ankte oder unbeschr\"ankte Intervalle, $ h(y)\neq 0 $ f\"ur alle $ y\in I_2 $. Wir wollen eine L\"osung $ y=y(x) $ finden. Nehmen wir mal an, wir h\"atten eine, d.h. $ y\colon D(y)\rightarrow W(y) $ mit $ D(y)\subseteq I_1 $, $ W(y)\subseteq I_2 $ l\"ost die DGL. F\"ur $ x\in D(y): $
+\[ \frac{1}{h(y(x))}y'(x)=g(x). \]
+Bilden der Stammfunktionen liefert:
+\[ \left.\int\frac{1}{h(x)}\dd y\right|_{y=y(x)}=\int g(x)\dd x \]
+D.h. jede L\"osung der DGL l\"ost die Integralgleichung
+\[ \int\frac{\dd y}{h(x)}=\int g(x)\dd x. \]
+Es gilt auch die Umkehrung. Also angenommen, $ y $ l\"ost die Integralgleichung, dann erhalten wir per Differenzieren nach $ x $:
+\begin{align*} &\frac{\dd}{\dd x}\left(\int\frac{1}{h(x)}\dd y\middle|_{y=y(x)}\right)=\frac{\dd}{\dd x}\left(\int g(x)\dd x\right)=g(x)\\=&\frac{\dd}{\dd y}\left(\frac{1}{h(y)}\dd y\middle)\right|_{y=y(x)}\frac{\dd y}{\dd x}=\frac{1}{h(y(x))}y'(x) \end{align*}
+Um die DGL zu l\"osen, k\"onnen wir eine L\"osung der INtegralgleichung suchen. Der Vorteil ist hier, dass wir (wenn wir Gl\"uck haben) Stammfunktionen von $ \frac{1}{h} $ und $ g $ explizit finden und (mit noch mehr Gl\"uck) die erhaltene Gleichung nach $ y $ aufl\"osen.
+\begin{beispiel}
+	$ y'=\frac{y}{1+4x^2} $, z.B. $ g\colon\R\rightarrow\R $, $ g(x)=\frac{1}{1+4x^2} $, $ h\colon\R\rightarrow\R $, $ h(y)=y $. D.h. die Integralgleichung ist
+	\[ \int\frac{1}{y}\dd y=\int\frac{1}{1+4x^2}\dd x, \]
+	d.h.
+	\[ \ln|y|=\frac{1}{2}\arctan 2x + c \]
+	und das k\"onnen wir nach $ y $ aufl\"osen:
+	\[ |y|=e^{\ln |y|}=e^{\frac{1}{2}\arctan 2x}\underbrace{e^c}_{c_1} \]
+	\[ y=c_1e^{\frac{1}{2}\arctan 2x}\text{ oder }y=-c_1e^{\frac{1}{2}\arctan 2x}  \]
+	Also:
+	\[ y=c_2e^{\frac{1}{2}\arctan 2x}\text{ mit }c_2\in\R \]
+	ist globale L\"osung.\\
+	Wenn wir das AWP
+	\[ \begin{cases}
+	y'=\frac{y}{1+4x^2}\\y(0)=2
+	\end{cases} \]
+	l\"osen wollen, dann wir wie oben vorgehen und am Ende $ c_2 $ anpassen:
+	\[ 2=y(0)=c_2e^{\frac{1}{2}\arctan 2\cdot 0}=c_2. \]
+	D.h. $ y(x)=2e^{\frac{1}{2}\arctan 2x} $ l\"ost das AWP. Alternativ k\"onnen wir auch anstelle von Stammfunktionen direkt bestimmte Integrale nehmen. Anstelle von
+	\[ \int\frac{1}{y}\dd y=\int\frac{1}{1+4x^2}\dd x \]
+	betrachten wir
+	\[ \int_2^x\frac{1}{y}\dd y=\int_2^x\frac{1}{1+4x^2}\dd x \]
+	d.h.
+	\begin{align*} &\ln|y|-\ln 2=\frac{1}{2}\arctan 2x-\frac{1}{2}\arctan 2\cdot 0\\
+	\Rightarrow&\ln |y|=\frac{1}{2}\arctan 2x+\ln 2\\
+	\Rightarrow& |y|=e^{\ln|y|}=e^{\frac{1}{2}\arctan 2x}e^{\ln 2}=2e^{\frac{1}{2}\arctan 2x}\\\Rightarrow&y=2e^{\frac{1}{2}\arctan 2x}\text{ l\"ost das AWP.} \end{align*}
+\end{beispiel}
+\begin{bemerkung}
+	Eine DGL der Form
+	\[ y'=f(x,y)=\varphi\left(\frac{y}{x}\right) \]
+	hei\ss t \deftxt{\"Ahnlichkeitsdifferentialgleichung}. Die Substitution $ u=\frac{y}{x} $ liefert
+	\[ y=x u(x)\Rightarrow y'=u(x)+xu'(x)\Rightarrow u'=\frac{y'-u}{x}\Rightarrow \frac{\dd u}{\dd x}=\frac{\varphi(u)-u}{x} \]
+	also eine DGL mit getrennten Variablen, die wir mit der obigen Methode bearbeiten k\"onnen. Haben wir eine L\"osung $ u=u(x) $, so bekommen wir per $ y(x)=xu(x) $ eine L\"osung der urspr\"unglichen Gleichung.
+\end{bemerkung}
+\begin{beispiel}
+	$ x^2y'=3y^2+yx $ k\"onnen wir schreiben als
+	\[ y'=3\left(\frac{y}{x}\right)^2+\frac{y}{x}=\varphi\left(\frac{y}{x}\right)\text{ mit }\varphi(u)=3u^2+u. \]
+	D.h.
+	\[ u'=\frac{\varphi(u)-u}{x}=\frac{3u^2+u-u}{x} \]
+	ist zuz l\"osen. in sehr praktischer 'Physiker-Notation':
+	\begin{align*} &\frac{\dd u}{\dd x}=\frac{3u^2}{x}\Rightarrow\frac{1}{3u^2}\dd u=\frac{1}{x}\dd x\Rightarrow\int\frac{1}{3u^2}\dd u=\int\frac{1}{x}\dd x\\\Rightarrow& -\frac{1}{3}u^{-1}=\ln|x|+c\Rightarrow -u^{-1}=3\ln|x|+c\Rightarrow u=\frac{-1}{3\ln|x|+c}\Rightarrow y=\frac{-x}{3\ln|x|+c} \end{align*} 
+	Wir beachten (vgl. Grundaufgaben), dass das INtervall auf dem $ y $ definiert ist, von $ c $ abh\"angt. 
+\end{beispiel} 
+\begin{bemerkung}
+	Wir haben noch nicht die Frage beantwortet, ob DGLn mit getrennten Variablen immer (eindeutig) l\"osbar sind. Dies verschieben wir auf das n\"achste Kapitel.
+\end{bemerkung}

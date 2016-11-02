@@ -1,0 +1,18 @@
+\chapter{Lineare Differentialgleichungen}
+Wir betrachten eine DGL 1. Ordnung der Form
+\[ (\ast)\qquad y'=a(x)y+b(x) \]
+mit $ a,b\colon I\rightarrow\R $, $ I\subseteq\R $ ein Intervall.
+\begin{definition}
+	Die DGL hei\ss t \deftxt{lineare DGL 1. Ordnung}. Sie hei\ss t \deftxt{homogen}, wenn $ b=0 $ ist und \deftxt{inhomogen}, webb $ b\neq 0 $. In diesem Fall hei\ss t $ b $ die \deftxt{Inhomogenit\"at} oder \deftxt{St\"orfunktion}.
+\end{definition}
+\begin{beispiel}
+	\begin{enumerate}
+		\item[]
+		\item Die Gleichung aus 1.1, \[ T'(t)=k(T_a-T(t))=\underbrace{-k}_{a(t)}T(t)\underbrace{-kT_A}_{b(t)}, \]
+		ist eine inhomogene lineare DGL 1. Ordnung.
+		\item Die DGL des exponentiellen Wachstums aus 1.3,
+		\[ M'(t)=\underbrace{\alpha}_{a(t)}N(t), \]
+		ist eine homogene lineare DGL 1. Ordnung.
+		\item Die obige DGL modelliert den Wachstumsprozess ohne \"au\ss ere Einfl\"usse. Will man diese im Modell hinzuf\"ugen, kann man z.B. die Wachstumsrate $ \alpha $ zeitabh\"angig machen oder eine den Zuwachs \"anderende St\"orfunktion addieren. Dann erh\"alt man wieder eine inhomogene lineare DGL 1. Ordnung.  
+	\end{enumerate}
+\end{beispiel}
