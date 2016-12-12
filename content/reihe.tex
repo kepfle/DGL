@@ -1,0 +1,30 @@
+\chapter{Funktionenreihen und das L\"osen von linearen Differentialgleichungen}
+Wir betrachten jetzt wieder die inhomogene lineare DGL $ Ly=y^{(n)}+a_{n-1}(x)y^{(n-1)}+...+a_0(x)y=b $ mit nicht notwendigerweise konstanten Koeffizienten unter der Anfangsbedingung
+\[ y(x_0)=\eta_0,...,y^{(n-1)}(x_0)=\eta_{n-1} .\]
+Unser erstes Ziel ist es zu zeigen, dass unter der Annahme, dass die Koeffizienten und die rechte Seite in einer Umgebung von $ x_0 $ als Potenzreihe darstellbar sind, dies auch f\"ur die gem\"a\ss\ Kapitel 10 existierende L\"osung der Fall ist.
+\begin{satz}
+	Sei $ r>0 $ und seien $ a_{n-1},...,a_0,b: B_r(x_0)=]x_0-r,x_0+r[\rightarrow\R $ als Potenzreihen darstellbar. Dann ist die L\"osung des AWP
+	\[ \begin{cases}
+	Ly=b\\
+	y(x_0)=\eta_0,...,y^{(n-1)}(x_0)=\eta_{n-1}
+	\end{cases} \]
+	auf $ B_r(x_0) $ als Potenzreihe darstellbar.
+\end{satz}
+\begin{beweis}
+	Wir machen nur $ n=2 $ und O.E. $ x_0=0 $, d.h.
+	\[ Ly=y''+p(x)y'+q(x)y=b(x). \]
+	Nach Voraussetzung gilt
+	\[ p(x)=\sum_{n=0}^{\infty}p_n x^n,\quad q(x)=\sum_{n=0}^{\infty}q_n x^n,\quad b(x)=\sum_{n=0}^{\infty}b_nx^n \]
+	auf $ B_r(0) $.\\
+	Ansatz: $ y(x)=\sum_{n=0}^{\infty}a_nx^n $. Dann:
+	\begin{align*} Ly&=\sum_{n=2}^{\infty}n(n-1)a_n x^{n-2}+\sum_{n=0}^{\infty}p_n x^n\sum_{n=1}^{\infty}na_n x^{n-1}+\sum_{n=0}^{\infty}q_n x^n\sum_{n=0}^{\infty}a_n x^n\\
+	&=\sum_{n=0}^{\infty}(n+2)(n+1)a_{n+2}x^n+\sum_{n=0}^{\infty}p_n x^n\sum_{n=0}^{\infty}(n+1)a_{n+1}x^n+...\\
+	&=\sum_{n=0}^{\infty}(n+2)(n+1)a_{n+2}x^n+\sum_{n=0}^{\infty}\left(\sum_{m=0}^{n}p_{n-m}(m+1)a_{m+1}\right)x^n+\sum_{n=0}^{\infty}\left(\sum_{m=0}^{n}a_{n-m}a_m\right)x^n\\
+	&=\sum_{n=0}^{\infty}\left((n+2)(n+1)a_{n+2}+\sum_{m=0}^{n}(m+1)p_{n-m}a_{m+1}+\sum_{m=0}^{n}q_{n-m}a_m\right)x^n\\&\overset{!}{=}\sum_{n=0}^{\infty}b_nx^n \end{align*}
+	Es folgt:
+	\[ \forall n\in\N: b_n=(n+2)(n+1)a_{n+2}+\sum_{m=0}^{n}p_{n-m}a_{m+1}+\sum_{m=0}^{n}q_{n-m}a_m \]
+	bzw.
+	\[ a_{n+2}=\frac{1}{(n+2)(n+1)}\left(b_n-\sum_{m=0}^{n}(m+1)p_{n-m}a_{m+1}-\sum_{m=0}^{n}q_{n-m}a_m\right)\qquad(\ast) \]
+	Also $ y(0)=a_0=\eta_0 $ und $ y'(0)=a_1=\eta_1 $.\\
+	Wir setzen also $ a_0\coloneqq\eta_0 $, $ a_1\coloneqq\eta_1 $, $ a_2\coloneqq a_{0+2}=\frac{1}{2}(b_0-p_0 a_1-q_0a_0) $,..., und behaupten, dass $ \sum_{n=0}^{\infty}a_n x^n $ auf $ B_r(0) $ konvergiert.
+\end{beweis}

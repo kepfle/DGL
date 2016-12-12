@@ -1,0 +1,204 @@
+\chapter{Metrische R\"aume und der Banachsche Fixpunktsatz}
+\begin{definition}
+	Sei $ M $ eine Menge. Eine Abbildung $ d\colon M\times M\rightarrow\R_{\geq 0} $ ist eine \deftxt{Metrik} auf $ M $, falls gilt:
+	\begin{enumerate}
+		\item $ d(x,y)=0\Leftrightarrow x=y $.
+		\item $ \forall x,y\in M\colon d(x,y)=d(y,x) $.
+		\item $ \forall x,y,z\in M: d(x,z)\leq d(x,y)+d(y,z) $.
+	\end{enumerate}
+	$ (M,d) $ hei\ss t \deftxt{metrischer Raum}.
+\end{definition}
+\begin{definition}
+	Sei $ (M,d) $ ein metrischer Raum. Dann induziert $ d $ eine \deftxt{Topologie} auf $ M $ und wir k\"onnen 'topologische Eigenschaften' betrachten:
+	\begin{enumerate}
+		\item $ A\subseteq M $ hei\ss t \deftxt{offen}, falls $ \forall x\in A\exists r>0:B_r(x)\subseteq A  $, wobei $ B_r(x)=\lbrace y\in M\mid d(x,y)<r\rbrace $ die \deftxt{offene Kugel um $ x $ mit Radius $ r $} ist.
+		\item $ A\subseteq M $ hei\ss t \deftxt{abgeschlossen}, falls $ M\setminus A $ offen ist.
+		\item F\"ur $ A\subseteq M $ ist $ \mathring A=\lbrace x\in A\mid \exists r>0: B_r(x)\subseteq A\rbrace $ das \deftxt{Innere} von $ A $ und $ \bar A=\lbrace x\in M\mid\forall r>0:B_r(x)\cap A\neq\emptyset\rbrace $ der \deftxt{Abschluss} von $ A $.  
+	\end{enumerate}
+\end{definition}
+\begin{bemerkung}
+	Sei $ (M,d) $ ein metrischer Raum. Dann gilt:
+	\begin{enumerate}
+		\item $ U_j\subseteq M $ offen, $ j\in J= $beliebige Indexmenge. Dann ist $ \bigcup_{j\in J} U_j $ offen.
+		\item $ U_1,...,U_n $ offen, dann ist $ \bigcap_{j=1}^n $ offen.
+		\item $ A_j\subseteq M $ abgeschlossen, $ j\in J $ beliebige Indexmenge. Dann ist $ \bigcap_{j\in J}  A_j$ abgeschlossen.
+		\item $ A_1,...,A_n $ abgeschlossen, dann ist $ \bigcup_{j=1}^n $ abgeschlossen.
+		\item $ \emptyset, M $ offen und abgeschlossen, $ \mathring A $ offen, $ \bar A $ abgeschlossen.
+		\item $ A $ offen$ \Leftrightarrow A=\mathring A $ und $ A $ abgeschlossen$ \Leftrightarrow A=\bar A $.
+		\item $ A\subseteq B\Rightarrow \mathring A\subseteq \mathring B $ und $ \bar A\subseteq\bar B $.
+		\item $ B_r(x) $ ist offen, die abgeschlossene Kugel um $ x $ mit Radius $ r>0 $ $ \bar B_r(x)=\lbrace y\in M\mid d(x,y)\leq r\rbrace $ ist abgeschlossen.
+		\item $ \overline{B_r(x)}\subseteq\bar B_r(x) $.
+		\end{enumerate}
+\end{bemerkung}
+\begin{definition}
+	Sei $ (M,d) $ ein metrischer Raum. Eine Folge $ (x_n)_n\subset M $ ist \deftxt{konvergent mit Grenzwert $ x\in M $}, falls
+	\[ \forall\e>0\exists n_0\in\N\forall n\geq n_0: d(x,x_n)<\e. \]
+	Die Folge ist eine \deftxt{Cauchyfolge}, falls
+	\[ \forall\e>0\exists n_0\forall n,m\geq n_0:d(x_n,x_m)<\e. \]
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item Wenn $ (x_n)_n $ konvergent ist, dann ist der Grenzwert $ x\in M $ eindeutig bestimmt, wir schreiben $ x_n\rightarrow x $ oder $ \lim x_n=x $.
+		\item F\"ur $ A\subseteq M $ gilt
+		\[ x\in\bar A\Leftrightarrow\exists (x_n)_n\subseteq A:x_n\to x. \]
+		\item $ x_n\to x $ in $ M\Leftrightarrow d(x_n,x)\to 0 $ in $ \R $.
+		\item $ x_n\to x $, $ y_n\to y\Rightarrow d(x_n,y_n)\to d(x,y) $.
+		\item Jede konvergente Folge ist Cauchy. R\"aume in denen die Umkehrung gibt bekommen einen eigenen Namen: 
+	\end{enumerate}
+\end{bemerkung}
+\begin{definition}
+	Ein metrischer Raum $ (M,d) $ in dem jede Cauchyfolge konvergiert, ist \deftxt{vollst\"andig}.
+\end{definition}
+\begin{definition}
+	Seien $ (M,d) $ und $ (N,d) $ metrische R\"aume (wir benutzen denselben Buchstaben f\"ur beide Metriken). Eine Abbildung $ f\colon M\rightarrow N $ ist \deftxt{stetig in $ x\in M $}, falls
+	\[ \forall\e>0\exists\delta>0\forall y\in M: d(x,y)<\delta\Rightarrow d(f(x),f(y))<\e. \]
+	$ f $ ist \deftxt{stetig}, falls $ f $ in jedem $ x\in M $ stetig ist.
+\end{definition}
+\begin{lemma}
+	Sei $ f\colon M\rightarrow N $ eine Abbildung zwischen metrischem R\"aumen. Sei $ x\in M $. Dann ist $ f $ stetig in $ x $ genau dann, wenn f\"ur jede Folge $ (x_n)_n\subseteq M $ gilt $ x_n\to x\Rightarrow f(x_n)\to f(x) $.
+\end{lemma}
+\begin{beweis}
+	\begin{description}
+		\item['$ \Rightarrow $':] Sei $ (x_n)_n\subseteq M $ mit $ x_n\to x $. Sei $ \e>0 $ gegeben. $ f $ stetig$ \Rightarrow \exists \delta>0:d(x,y)<\delta\Rightarrow d(f(x),f(x))<\e $. W\"ahle $ n_0 $ derart, dass $ d(x,x_n)<\delta $ f\"ur $ n\geq n_0 $. D.h. $ d(f(x),f(x_n))<\e $ f\"ur $ n\geq n_0 $. D.h. $ f(x_n)\to f(x) $.
+		\item['$ \Leftrightarrow $':] Angenommen, $ f $ ist nicht stetig in $ x $. Dann \[ \exists\e>0\forall\delta>0\exists y\in M:d(x,y)<\delta\wedge d(f(x),f(y))\geq\e_0. \]
+		W\"ahle $ \e_0>0 $ wie oben. Fixiere $ n\in\N_{\geq 1} $. Setze $ \delta\coloneqq\frac{1}{n} $ in die Bedingung. W\"ahle $ y $ entsprechend der Bedingung. Setze $ x_n\coloneqq y $. Dann haben wir f\"ur jedes $ n $:
+		\[ d(x,x_n)\leq\frac{1}{n}\wedge d(f(x),f(x_n))\geq\e_0. \]
+		D.h. $ x_n\to x $ und $ f(x_n)\not\to f(x) $.
+	\end{description}
+\end{beweis}
+\newpage
+\begin{lemma}
+	Seien $ f,M,N $ wie in 6.8. Dann sind folgende Aussagen \"aquivalent:
+	\begin{enumerate}
+		\item $ f $ ist stetig.
+		\item $ U\subseteq N $ offen$ \Rightarrow f^{-1}(U)\subseteq M $ offen.
+		\item $ A\subseteq N $ abgeschlossen$ \Rightarrow f^{-1}(A)\subseteq M $ abgeschlossen.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{description}
+		\item[i)$ \Rightarrow $ii):] Sei $ U\subseteq N $ offen und $ x\in f^{-1}(U) $. D.h. $ f(x)\in U $ und es gibt $ \e>0 $ mit $ B_\e(f(x))\subseteq U $. $ f $ stetig$ \Rightarrow\exists\delta>0: d(x,y)<\delta\Rightarrow d(f(x),f(y))<\e $.\\
+		Behauptung: $ B_\delta(x)\subseteq f^{-1}(U) $.\\
+		Sei $ y\in B_\Delta(x) $. Dann $ f(y)\in B_\e(f(x))\subseteq U $. Also $ y\in f^{-1}(U) $ und $ f^{-1}(U) $ offen.
+		\item[ii)$ \Rightarrow $i):] Sei $ x\in M $, $ \e>0 $. $ B_\e(f(x))\subseteq U $ offen. Dann ist $ V\coloneqq f^{-1}(B_\e(f(x)))\subseteq M $ offen. Da $ f(x)\in B_\e(f(x)) $, gilt $ x\in V $. D.h. es existiert $ \delta>0 $ so dass $ B_\delta(x)\subseteq V $. Sei $ y\in M $ mit $ d(x,y)<\delta $. D.h. $ y\in B_\delta(x)\subseteq V $. Also $ f(y)\in B_\e(f(x)) $ und somit $ d(f(x),f(y))<\e $. Also ist $ f $ stetig.
+		\item[ii)$ \Leftrightarrow $iii):] F\"ur $ A\subseteq M $ gilt $ M\setminus f^{-1}(A)=f^{-1}(M\setminus A) $.   
+	\end{description}
+\end{beweis}
+\begin{satz}[Banachscher Fixpunktsatz]
+	Sei $ (M,d) $ vollst\"andiger metrischer Raum. Sei $ \Phi\colon M\rightarrow M $ eine Kontraktion, d.h.
+	\[ \exists\lambda\in]0,1[\forall x,y\in M: d(\Phi(x),\Phi(y))\leq\lambda d(x,y). \]
+	Dann besitzt $ \Phi $ genau einen Fixpunkt, d.h. $ x\in M $ mit $ \Phi(x)=x $. F\"ur $ x_0\in M $ konvergiert die Folge $ (x_n)_n\subseteq M $ definiert durch $ x_n\coloneqq\Phi(x_{n-1}) $, $ n\geq 1 $ gegen den Fixpunkt $ x $.
+\end{satz}
+\begin{beweis}
+	\begin{description}
+		\item[Eindeutigkeit:] Seien $ x,y $ Fixpunkte. Dann
+		\[ 0\leq d(x,y)=d(\Phi(x),\Phi(y))\leq\lambda d(x,y). \]
+		Wegen $ \lambda\in]0,1[ $ kann das nur gelten, wenn $ x=y $.
+		\item[Existenz:] Wir zeigen, dass die im Satz definierte Folge eine Cauchyfolge ist: Sei $ n\in\N $, $ k\in\N $. Dann
+		\[ d(x_{n+k}, x_n)\leq d(x_{n+k}, x_{n+k-1})+d(x_{n+k-1}, x_{n+k-2})+...+d(x_{n+1}, x_n)=(+) \]
+		\begin{align*} d(x_{j+1}, x_j)&=d(\Phi(x_{j}),\Phi(x_{j-1}))\\&\leq \lambda d(x_j, x_{j-1})\\&=\lambda d(\Phi(x_{j-1}), \Phi(x_{j-1}))\\&\leq\lambda^2 d(x_{j-1}, x_{j-1})\\\vdots\\&\leq\lambda^j d(x_1,x_0) \end{align*}
+		\[ (+)=\sum_{j=n}^{n+k-1}d(x_{j+1}x_j)\leq\sum_{j=n}^{n+k-1}\lambda^j d(x_1,x_0)=d(x_1,x_0)\lambda^n\sum_{j=0}^{k-1}\lambda^j\leq d(x_1,x_0\lambda^n)\sum_{j=1}^{\infty}\lambda^j=d(x_1,x_0)\frac{\lambda^n}{1-\lambda}\xrightarrow{n\to\infty}0 \]
+		Also ist $ (x_n)_n $ eine Cauchyfolge. Setze $ x\coloneqq\lim_{n\to\infty}x_n\in M $. Das $ \Phi $ als Kontraktion stetig ist, folgt
+		\[ x=\lim_{n\to\infty} x_n=\lim_{n\to\infty}\Phi(x_{n-1})=\Phi(\lim_{n\to\infty}x_{n-1})=\Phi(x) \]
+		und $ x $ ist der gesuchte Fixpunkt.
+	\end{description}
+\end{beweis}
+\begin{definition}
+	Sei $ X $ ein Vektorraum \"uber $ \K\in\lbrace \R,\C\rbrace $. Eine Abbildung $ \norm{\cdot}\colon X\rightarrow\R_{\leq 0} $ ist eine \deftxt{Norm} auf $ X $, falls:
+	\begin{enumerate}
+		\item $ \norm{x}=0\Rightarrow x=0 $.
+		\item $ \forall x\in X $, $ \lambda\in\K: $ $ \norm{\lambda x}=|\lambda|\norm{x} $.
+		\item $ \forall x,y\in X $: $ \norm{x+y}\leq\norm{x}+\norm{y} $.
+	\end{enumerate}
+	$ (X,\norm{\cdot}) $ ist ein \deftxt{normierter Raum}.
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item Aus ii) folgt $ \norm{0}=0 $ und aus iii) $ |\norm{x}-\norm{y}|\leq\norm{x-y} $.
+		\item Jeder normierte Raum $ X $ ist ein metrischer Raum mit der Metrik $ d(x,y)=\norm{x-y} $.\\
+		Konvergenz, Stetigkeit, Offenheit, etc. in $ X $ beziehen sich auf diese Metrik.
+	\end{enumerate}
+\end{bemerkung}
+\begin{lemma}
+	Sei $ (X,\norm{\cdot}) $ ein normierter Raum. Dann
+	\begin{enumerate}
+		\item $ \overline{B_r(x)}=\bar{B}_r(x) $.
+		\item $ (x_n)_n, (y_n)_n\subseteq X$, $ (\lambda_n)_n\subseteq\K $ mit $ x_n\to x $, $ y_n\to y $, $ \lambda_n\to\lambda $, dann gilt $ x_n+y_n\to x+y $, $ \lambda_nx_n\to\lambda x $ und $ \norm{x_n}\to\norm{x} $.
+		\item $ U\subseteq X $ linearer Unterraum, dann ist auch $ \bar U\subseteq X $ ein linearer Unterraum. 
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}
+		\item Sei $ y\in\bar B_r(x) $. D.h. $ \norm{x-y}\leq r $. Definiere
+		\[ y_n=x+\left(1-\frac{1}{n}\right)(y-x)\quad\text{f\"ur}\quad n\geq 1. \]
+		Dann $ y_n\to y $ und $ \norm{y_n-x}=\left(1-\frac{1}{n}\right)\norm{y-x}<r $ f\"ur jedes $ n\geq 1 $. D-h- $ (y_n)_n\subseteq B_r(x) $ und daher $ y\in\overline{B_r(x)} $.
+		\item Sei $ \e>0 $. W\"ahle $ n_0 $ derart, dass f\"ur $ n\geq n_0 $ gilt
+		\[ \norm{x_n-x}<\e,\quad \norm{y_n-y}\leq\e,\quad |\lambda_n-\lambda|<\e. \]
+		Dann f\"ur $ n\geq n_0 $
+		\[ \norm{x_n+y_n-(x+y)}\leq\norm{x_n-x}+\norm{y_n-y}<2\e \]
+		\[ \norm{\lambda_nx_n-\lambda x}\leq\norm{\lambda_nx_n-\lambda_nx}+\norm{\lambda_n x-\lambda x}\leq|\lambda_n|\norm{x_n-x}+\norm{x}|\lambda_n-\lambda|\leq\e(c_1+c_2) \]
+		Die letzte Aussage folgt aus
+		\[ |\norm{x_n}-\norm{x}|\leq\norm{x_n-x}\xrightarrow{n\to\infty}0. \]
+		\item \begin{itemize}
+			\item $ x,y\in\bar U $, es existieren $ (x_n)_n,(y_n)_n\subseteq U $ mit $ x_n\to x $, $ y_n\to y $. Mit ii) folgt dann $ x_n+y_n\to x+y $, also liegt $ x+y\in\bar U $.
+		\item $ x\in\bar U $, es existiert $ (x_n)_n\subseteq U $ mit $ x_n\to x $. Dann folgt $ \lambda x_n\to\lambda x $, also $ \lambda x\in \bar U $.
+		\item $ 0\in U $, also $ 0\in\bar U $.
+		\end{itemize}
+	\end{enumerate}
+\end{beweis}
+\begin{definition}
+	Ein vollst\"andiger normierter Raum ist ein \deftxt{Banachraum}.
+\end{definition}
+\begin{definition}
+	Sei $ X $ ein Vektorraum. Seien $ \norm{\cdot}_1 $, $ \norm{\cdot}_2 $ Normen auf $ X $. Die Normen sind \deftxt{\"aquivalent}, $ \norm{\cdot}_1,\sim\norm{\cdot}_2 $, falls $ c,C>0 $ existieren mit
+	\[ \forall x\in X:c\norm{x}_1\leq\norm{x}_2\leq C\norm{x}_1. \]
+\end{definition}
+\begin{satz}
+	Sei $ X $ ein Vekotrraum und $ \norm{\cdot}_1, \norm{\cdot}_2 $ \"aquivalente Normen.
+	\begin{enumerate}
+		\item $ id\colon(X,\norm{\cdot}_1)\rightarrow(X,\norm{\cdot}_2) $ und $ (X,\norm{\cdot}_2)\rightarrow(X,\norm{\cdot}_2) $ sind stetig.
+		\item $ x_n\to x $ in $ (X,\norm{\cdot}_1)\Leftrightarrow x_n\to x $ in $ (X,\norm{\cdot}_2) $.
+		\item $ (x_n)_n $ ist $ \norm{\cdot}_1- $Cauchy$ \Leftrightarrow (x_n)_n $ ist $ \norm{\cdot}_2- $Cauchy.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}
+	\item \[ d_2(id(x),id(y))=\norm{x-y}_2\leq C\norm{x-y}_1=C\cdot d_1(x,y) \]
+	f\"ur alle $ x,y\in X $. D.h. f\"ur $ \e>0 $ w\"ahle $ \delta=c\cdot\e $. F\"ur die andere Richtung $ \delta=\frac{1}{c}\e $.
+	\item folgt aus i).
+	\item Es gen\"ugt, eine Richtung zu zeigen. $ (x_n)_n $ sei $ \norm{\cdot}_1 $-Cauchy. D.h.
+	\[ \forall\e>0\exists n_0\forall n,m\geq n_0:\underbrace{\norm{x_n-x_n}_1}_{\leq\frac{1}{C}\norm{x_n-x_m}_2}<\e. \]
+	Es folgt
+	\[ \forall\e>0\exists n_0\forall n,m\geq n_0:\norm{x_n-x_m}<C\cdot\e. \]
+	\end{enumerate}
+\end{beweis}
+\begin{beispiel}
+	$ C[a,b]=\lbrace f\colon[a,b]\rightarrow\R\mid f\text{ stetig}\rbrace $, $ \norm{f}_\infty\coloneqq\sup_{x\in[a,b]}|f(x)| $, ist ein Banachraum.
+	\begin{beweis}
+		\begin{itemize}
+			\item $ 0\in[a,b]\surd $
+			\item $ f,g\in C[a,b] $, $ \lambda\in\R \Rightarrow\lambda f+g\in C[a,b]\surd$
+		\end{itemize}
+		$ \Rightarrow C[a,b]\subseteq\R^{[a,b]}\coloneqq\lbrace f\colon[a,b]\rightarrow\R\text{ Abbildung}\rbrace $ ist linearer Unterraum.
+		\begin{itemize}
+			\item $ \norm{f}_\infty=0\Rightarrow\forall x\in[a,b]:|f(x)|=0\Rightarrow f\equiv 0 $.
+			\item \[ \norm{\lambda f}_\infty=\sup_{x\in[a,b]}|\lambda f(x)|=|\lambda|\sup_{x\in[a,b]}|f(x)|=|\lambda|\norm{f}_\infty \]
+			f\"ur $ \lambda\in\R $, $ f\in C[a,b] $.
+			\item \[ \norm{f+g}_\infty=\sup_{x\in[a,b]}|f(x)+g(x)|\leq\sup_{x\in[a,b]}(|f(x)|+|g(x)|\leq\sup_{x\in[a,b]}|f(x)|+\sup_{x\in[<,b]}|g(x)|=\norm{f}_\infty+\norm{g}_\infty \]
+		\end{itemize}
+		$ \Rightarrow\norm{\cdot}_\infty $ ist Norm auf $ C[a,b] $.\\
+		Sei $ (f_n)_n\subseteq C[a,b] $ Cauchy. D.h.
+		\[ \forall\e>0\exists n_0\forall n,m\geq n_0:\norm{f_n-f_m}_\infty=\sup_{x\in[a,b]}|f_n(x)-f_m(x)|<\e. \]
+		Es folgt:
+		\[ \forall\e>0\exists n_0\forall n,m\geq n_0\forall x\in[a,b]:|f_n(x)-f_m(x)|<\e.\qquad (\ast) \]
+		\[ \forall x\in[a,b]:(f_n(x))_n\subseteq\R\text{ ist Cauchyfolge.} \]
+		\[ \forall x\in[a,b]:\lim_{n\to\infty}f_n(x)\eqqcolon f(x)\text{ existiert.} \]
+		Wir haben also $ f\colon[a,b]\rightarrow\R $ mit $ f_n\to f $ punktweise und m\"ussen zeigen, dass letzteres auch gleichm\"a\ss ig gilt. Dann folgt aus bekannten S\"atzen der Analysis 1, dass $ f $ stetig ist, also in $ C[a,b] $ liegt und dass $ f_n\to f $ bez\"uglich $ \norm{\cdot}_\infty $.
+		Aus $ (\ast) $ folgt:
+		\[ \forall\e>0\exists n_0\forall n\geq n_0\forall x\in[a,b]\forall m\geq n_0:|f_n(x)-f_m(x)|<\e. \]
+		Sei $ \e>0 $. W\"ahle $ n_0 $ wie oben. Sei $ n\geq n_0 $, $ x\in[a,b] $. Dann
+		\[ |f_n(x)-f(x)|\leq|f_n(x)-f_m(x)|+|f_m(x)-f(x)|\eqqcolon(+) \] f\"ur jedes $ m\in\N $. F\"ur $ m\geq n_0 $ ist $ |f_n(x)-f_m(x)|<\e $. Da $ x $ jetzt fest ist, finden wir $ m>n_0 $ mit $ |f_{m}(x)-f(x)|<\e $. D.h. $ (+)<\e+\e=2\e $ f\"ur dieses $ m $. Damit sind wir fertig.
+\end{beweis}
+\end{beispiel}

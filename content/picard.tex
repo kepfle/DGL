@@ -1,0 +1,89 @@
+\chapter{Der Satz von Picard-Lindel\"of}
+Wir betrachten das folgende
+\[ (AWP)\begin{cases}
+y'=f(x,y)\\y(\xi)=\eta
+\end{cases} \]
+und wollen in diesem Kapitel Bedingungen an $ f $ finden, die garantieren, dass $ (AWP) $ genau eine (lokale) L\"osung besitzt.
+\begin{satz}[Picard-Lindel\"of]
+	Seien $ \xi,\eta\in\R $, $ a,b>0 $. Sei $ Q=[\xi-a,\xi+a]\times[\eta-b,\eta+b] $. Die Funktion $ f\colon Q\rightarrow\R $ sei auf $ Q $ stetig und gen\"ugt dort einer Lipschitzbedingung  bez\"uglich $ y $, d.h.
+	\[ \exists L\geq 0\forall (x,y_1), (x,y_2)\in Q: |f(x,y_1)-f(x,y_2)|\leq L|y_1-y_2|. \]
+	Dann hat das $ (AWP) $ von oben im Intervall $ [\xi-h,\xi+h] $ mit $ h=\min\left\lbrace a,\frac{b}{m}\right\rbrace $, $ m=\max_{(x,y)\in Q}|f(x,y)| $, genau eine L\"osung.
+\end{satz}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item Falls $ m=0 $, hei\ss t dies, dass $ f\equiv 0 $, also $ y\equiv\eta $ eine L\"osung auf $ [\xi-a,\xi+a] $. Wir k\"onnen also oben $ \frac{b}{0}=\infty $ lesen.
+		\item Die Lipschitzbedingung ist eine Wachstumsbeschr\"ankung an $ f $ in $ y- $Richtung bei festgehaltenem $ x $, wobei die Lipschitzkonstante $ L $ unabh\"angig von $ x $ ist.
+		\item Dass $ (\xi,\eta) $ in der Mitte von $ Q $ liegt, haben wir auf Bequemlichkeit angenommen. Wir diskutieren sp\"ater noch lokale und globale Lipschitzbedingungen sowie die Frage ob der Anfangswert auch auf dem Rand des Quaders liegen darf.\\
+		Erstmal geben wir uns mit dem Quader zufrieden und bringen hierf\"ur eine hinreichende Bedingung sowie Beispiele.
+	\end{enumerate}
+\end{bemerkung}
+\begin{lemma}
+	Sei $ f\colon Q\rightarrow\R $ stetig, $ \frac{\partial f}{\partial y}\equiv f_y $ existiere und sei auf $ Q $ beschr\"ankt (also z.B. $ f_y $ stetig ist). Dann gen\"ugt $ f $ auf $ Q $ einer Lipschitzbedingung in $ y $.
+\end{lemma}
+\begin{beweis}
+	Seien $ (x,y_1) $, $ (x,y_2)\in Q $, $ y_1<y_2 $. Dann ist $ f(x,\cdot)\coloneq[y_1,y_2]\rightarrow\R $ stetig und auf $ ]y_1,y_2[ $ differenzierbar. Nach dem Mittelwertsatz existiert ein $ \tilde y\in]y_1,y_2[ $ so dass\\$ |f(x,y_1)-f(y,y_2)|=|f_y(x,\tilde y)||y_1-y_2| $. Da $ f_y $ auf $ Q $ beschr\"ankt ist, existiert ein $ L\geq 0 $ so dass f\"ur alle $ (x,y)\in Q $ gilt: $ |f_y(x,y)|\leq L $. Hieraus folgt die Behauptung.
+\end{beweis}
+\begin{beispiel}
+	\begin{enumerate}
+		\item[]
+		\item Sei $ f\colon\R\times\R\rightarrow\R $, $ f(x,y)=y^2 $. Dann erf\"ullt $ f $ auf jedem (kompakten(!)) Quader eine Lipschitzbedingung bez\"uglich $ y $, denn
+		\[ |f(x,y_1)-f(x,y_2)|=|y_1^2-y_2^2|=|y_1+y_2||y_1-y_2| \]
+		und
+		\[ |y_1+y_2|\leq\sup_{\tilde y_1,\tilde y_2\in[\xi-a,a+\xi]}|\tilde y_1+\tilde y_2|\eqqcolon L<\infty \]
+		erf\"ulllt also sogar eine Lipschitzbedingung auf $ [\xi-a,a+\xi]\times\R $, aber nicht auf $ \R\times\R $.
+		\item Sei $ f\colon\R\times\R\rightarrow\R $, $ f(x,y)=3\sqrt[3]{y^2} $. Das
+		\[ (AWP)\begin{cases}
+		y'=f(x,y)\\y(0)=0
+		\end{cases} \]
+		hat die L\"osungen $ y\equiv 0 $ und $ y=x^3 $ auf $ \R $. Nach Satz 7.1 kann $ f $ also auf keinem Quader um $ (\xi,\eta)=(0,0) $ eine Lipschitzbedingung bez\"uglich $ y $ erf\"ullen.
+ 	\end{enumerate}
+\end{beispiel}
+\begin{beweis}[Beweis von Satz 1]
+	Der Beweis hat 4 Schritte:
+	\begin{enumerate}
+		\item Umformulierung des AWPs in eine \"aquivalente Integralgleichung: Wir zeigen, dass f\"ur $ y\colon I\rightarrow\R $, $ I\subseteq\R $ Intervall, $ \xi\in I $, die folgenden zwei Bedingungen \"aquivalent sind:
+		\begin{enumerate}
+			\item $ y=y(x) $ l\"ost das AWP $ y'=f(x,y) $, $ y(\xi)=\eta $ auf $ I $.
+			\item $ y\in C(I) $ und 
+			\[ y(x)=\eta+\int_{\xi}^{x}f(t,y(t))\dd t\forall x\in I. \]
+		\end{enumerate}
+		\begin{description}
+			\item[a)$ \Rightarrow $b):] $ y=y(x) $ L\"osung$ \Rightarrow y'(t)=f(t,y(t))$ f\"ur $ t\in I $, letztere Funktion ist stetig, $ y(\xi)=\eta $. Es folgt:
+			\[ y(x)-\eta=\int_{\xi}^{x}f(t,y(t))\dd t\forall x\in I. \]
+			$ y\in C(I) $ ist klar, da $ y $ ja sogar differenzierbar ist.
+			\item[b)$ \Rightarrow $a):] Sei $ y\in C(I) $ und es gelte die Integralgleichung von oben. $ f(r,y(r)) $ ist stetig auf $ I $, und mit dem Hauptsatz der Differentialrechnung folgt, dass
+			\[ x\mapsto\int_{\xi}^{x}f(t,y(t)) \dd t \]
+			differenzierbar und eine Stammfunktion von $ f(x,y(x)) $ ist. Also $ y'(x)=f(x,y(x)) $ f\"ur $ x\in I $ und $ y(\xi)=\eta+0=\eta $. 
+		\end{description}
+		Wir k\"onnen also statt das AWP zu l\"osen, zeigen, dass genau eine Funktion $ y\in C[\xi-h,\xi+h] $ existiert mit
+		\[ (IGL)\quad y(x)=\eta+\int_{\xi}^{x}f(t,y(t))\dd t \]
+		f\"ur $ y\in[\xi-h,\xi+h] $.
+		\item Umformulierung der IGL in ein Fixpunktproblem: Setze $ I\coloneqq[\xi-h,\xi+h] $,\\ $ M=\lbrace\varphi\in C[I]\mid\max_{t\in I}|\varphi(t)-\eta|\leq b\rbrace $ und \[ T\colon M\rightarrow M, \varphi\mapsto T(\varphi)\colon I\rightarrow\R, x\mapsto T(\varphi)(x)\coloneqq\eta+\int_{\xi}^{x}f(t,\varphi(t))\dd t \]
+		Es gilt \[ T(\varphi)=\varphi\Leftrightarrow\forall x\in I:\varphi(x)=T(\varphi)(x)=\eta+\int_{\xi}^{x}f(t,\varphi(t))\dd t. \]
+		Beachte: Wir wollen $ T(\varphi) $ wie oben definieren, damit wir (IGL) als Fixpunktproblem schreiben k\"onnen. Da $ f $ aber nicht auf $ I\times\R $, sondern nur auf $ Q $ definiert ist, k\"onnen wir nicht $ T\colon C(I)\rightarrow C(I) $ betrachten, sondern m\"ussen $ T $ auf $ M\subseteq C(I) $ definieren. So bekommen wir auf jeden Fall $ T\colon M\rightarrow C(I) $, dass $ T\varphi\in M $ gilt f\"ur jedes $ \varphi\in M $ m\"ussen wir noch pr\"ufen: F\"ur $ x\in I: $
+		\[ |T(\varphi)(x)-\eta|=\left|\int_{\xi}^{x}f(t,\varphi(t))\dd t\right|\leq\int_{\xi}^{x}|f(t,\varphi(t))Y\dd t\leq\int_{\xi}^{x}\max_{(\tilde x,\tilde y)\in Q}|f(\tilde x,\tilde y)|\dd t=\max_{(\tilde x,\tilde y)\in Q}|f(\tilde x,\tilde y)||x-\xi|\leq m\cdot h\leq b \]
+		Also:
+		\[ \max_{x\in I}|T(\varphi)(x)-\eta|\leq b\Rightarrow T(\varphi)\in M \]
+		\item Wahl einer Metrik auf $ M $, die $ T\colon M\rightarrow M $ zu einer Kontraktion und $ M $ vollst\"andig macht. Eine naheliegende Metrik auf $ M $ w\"are die folgende: Wir statten $ C(I) $ mit der Supremumsnorm aus. Damit ist $ C(I) $ ein Banachraum. $ M\subseteq(C(I),\norm{\cdot}_\infty) $ ist eine abgeschlossene Teilmenge und daher ein vollst\"andiger metrischer Raum bez\"uglich der induzierten Metrik. In dieser Metrik w\"urde $ T $ aber i.A. keine Kontraktion sein. Daher verwenden wir auf $ C(I) $ eine sogenannte \deftxt{Morgensternnorm}:
+		\[ \norm{f}_{\infty,\alpha}=\max_{t\in I}e^{-\alpha|t-\xi|}|\varphi(t)| \]
+		mit $ \alpha\in\R $. Das $ \alpha $ k\"onnen wir sp\"ater so w\"ahlen, dass wir eine Kontraktion bekommen. Zun\"achst aber die anderen Punkte:
+		\begin{itemize}
+			\item Aufg. 16$ \Rightarrow\norm{\cdot}_{\infty,\alpha}\sim\norm{\cdot}_\infty\Rightarrow (C(I),\norm{\cdot}_{\infty,\alpha}) $ vollst\"andig.
+			\item $ M\subseteq(C(I),\norm{\cdot}_\infty) $ ist abgeschlossen, denn
+			\[ M=\lbrace \varphi\in C(I)\mid\max_{t\in I}|\varphi(t)-\eta|\leq b\rbrace=\lbrace \varphi\in C(I)\mid\norm{\varphi-\psi}_{\infty}\leq b\rbrace=\bar B_b(\psi) \]
+			\item Kapitel 5.16$ \Rightarrow M\subseteq (C(I),\norm{\cdot}_{\infty,\alpha}) $ abgeschlossen. Setze $ d_{\infty,\alpha}(\varphi,\psi)=\norm{\varphi-\psi}_{\infty,\alpha} $ f\"ur $ \varphi,\psi\in C(I) $ bzw. in $ M $.\\
+	        Dann ist $ (M,d) $ vollst\"andig: Eine $ d_{\infty,\alpha}- $Cauchyfolge in $ M $ ist $ D_{\infty,\alpha}- $ bzw. $ \norm{\cdot}_{\infty,\alpha} -$Cauchyfolge in $ C(I) $, dort konvergent und wegen der Abgeschlossenheit liegt der Grenzwert in $ M $.
+	        \item Nun behaupten wir, dass es ein $ \alpha\in\R $ gibt, so dass $ T\colon (M,d_{\infty,\alpha})\rightarrow (M,d_{\infty,\alpha}) $ kontraktierend ist .Also f\"ur $ \varphi,\psi\in M $:
+	        \begin{align*}
+	        d_{\infty,\alpha}(T(\varphi),T(\psi))&=\max_{x\in I}e^{-\alpha|x-\xi|}|T(\varphi)(x)-T(\psi)(x)|\\&=\max_{x\in I}e^{-\alpha|x-\xi|}\left|\int_{\xi}^{x}f(t,\varphi(t))-f(t,\psi(t))\dd t\right|\\&\leq\max_{x\in I}\left|\int_{\xi}^{x}|f(t,\varphi(t))-f(t,\psi(t))|\dd t\right|\\&\leq\max_{x\in I}e^{-\alpha|x-\xi|}L\left|\int_{\xi}^{x}|\varphi(t)-\psi(t)|e^{-\alpha|t-\xi|}e^{\alpha|t-\xi|}\dd t\right|\\
+	        &\leq\max_{x\in I}e^{-\alpha|x-\xi|}L\left|\int_{\xi}^{x}e^{\alpha|t-\xi|}\dd t\right|d_{\infty,\alpha}(\varphi,\psi)\\
+	        &\leq\frac{L}{\alpha}\max_{x\in I}e^{-\alpha|x-\xi|}(e^{\alpha|x-\xi|}-1)d_{\infty,\alpha}(\varphi,\psi)\\
+	        &=\frac{L}{\alpha}\max_{x\in I}(1-e^{-\alpha|x-\xi|})d_{\infty,\alpha}(\varphi,\psi)\\
+	        &\leq\frac{L}{\alpha}d_{\infty}(\varphi,\psi)
+	        \end{align*}
+	        Mit $ \alpha>L $ erhalten wir also, dass $ T $ eine Kontraktion ist.
+	     \end{itemize}
+	     \item Anwendung des Banachschen Fixpunktsatzes. Es gibt also genau ein $ y\in M $ mit $ T(y)=y $.
+	\end{enumerate}
+\end{beweis}

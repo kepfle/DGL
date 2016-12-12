@@ -1,0 +1,61 @@
+\chapter{Fortsetzung von L\"osungen}
+\begin{lemma}
+	Sei $ D\subseteq\R^2 $ und $ f\colon D\rightarrow\R $ stetig.
+	\begin{enumerate}
+		\item Sei $ \Phi\colon[\xi,b[\rightarrow\R $ eine L\"osung der DGL $ y'=f(x,y) $, die in einer kompakten Menge $ A\subseteq D $ verl\"auft. Dann l\"asst sich $ \Phi $ auf $ [\xi,] $ als L\"osung fortsetzen.
+		\item Sei $ \Phi\colon[\xi,b]\rightarrow\R $ eine L\"osung, $ \psi\colon[b,c]\rightarrow\R $ eine L\"osung der DGL $ y'=f(x,y) $ und $ \psi(b)=\Phi(b) $. Dann ist
+		\[ u(x)=\begin{cases}
+		\Phi(x)&x\in[\xi,b]\\\psi(x)&x\in]b,c]
+		\end{cases} \]
+		eine L\"osung auf $ [\xi,c] $.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}
+		\item $ A $ kompakt$ \Rightarrow f|_A $ beschr\"ankt. D.h. $ \Phi'(t)=f(t,\Phi(t)) $ ist auf $ [\xi,b[ $ beschr\"ankt. Daraus folgt, dass $ \Phi $ gleichm\"a\ss ig stetig auf $ [\xi,b[ $ ist. Daher existiert $ \beta\coloneqq\lim_{x\nearrow b}\Phi(x) $ und $ (b,\beta)\in A $, da $ A $ abgeschlossen ist. Setze $ \Phi(b)=\beta $, dann ist $ \Phi\colon[\xi,b]\rightarrow\R $ stetig und daher auch $ f(\cdot,\Phi(\cdot))\colon[\xi,b]\rightarrow\R $ stetig.\\
+		Die Gleichung
+		\[ \Phi(x)=\Phi(\xi)+\int_{\xi}^{x}f(t,\Phi(t))\dd t \]
+		gilt f\"ur $ x\in[\xi,b[ $, weil hier $ \Phi $ das AWP $ y'=f(x,y) $, $ y(\xi)=\Phi(\xi) $ l\"ost, vgl. Beweis von 8.1. Grenz\"ubergang $ x\nearrow b $ in obiger Gleichung zeigt, dass letztere auch f\"ur $ x=b $ gilt. D.h., dass $ \Phi $ in $ b $ (linksseitig) differenzierbar ist und $ \Phi'(b)=f(b,\Phi(b)) $ gilt.
+		\item Es ist nur zu zeigen, dass $ u $ an der Stelle $ b $ die DGL erf\"ullt. $ u $ ist in $ b $ links- und rechtsseitig differenzierbar, und die Ableitungen sind gleich: $ f(b,\Phi(b))=f(b,\psi(b)) $. Damit sind wir fertig.
+	\end{enumerate}
+\end{beweis}
+Wir fassen zusammen und erhalten:
+\begin{satz}[Globaler Existent und Eindeutigkeitssatz]
+	Sei $ D\subseteq\R^2 $ offen, $ f\colon D\rightarrow\R $ sei stetig und gen\"uge einer lokalen Lipschitzbedingung bzgl. $ y $. Dann hat das
+	\[ (AWP)\begin{cases}
+	y'=f(x,y)\\y(\xi)=\eta
+	\end{cases} \]
+	f\"ur jedes $ (\xi,\eta)\in D $ eine L\"osung $ \Phi $, die nicht fortsetzbar ist und die nach rechts und links dem Rand von $ D $ beliebig nahe kommt. Sie ist eindeutig bestimmt, d.h. alle L\"osungen von (AWP) sind Restriktionen von $ \Phi $. 
+\end{satz}
+\begin{definition}
+	Sei $ D\subseteq\R $ offen, $ J\subset\R $, $ \Phi\colon J\rightarrow\R $ sei derart, dass $ (x,\Phi(x))\in D $ gilt f\"ur alle $ x\in J $. Wir setzen
+	\[ G=\overline{\graph\Phi}=\overline{\lbrace (x,\Phi(x))\mid x\in J\rbrace}, \]  
+	\[ G_+=\lbrace(x,y)\in G\mid x\geq\xi\rbrace \]
+	und sagen, dass $ \Phi $ \deftxt{nach rechts dem Rand von $ D $ beliebig nahe kommt}, falls $ G_+ $ keine kompakte Teilmenge von $ D $ ist.
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item Etwas weniger technisch und griffiger formuliert, sagt der Satz, dass die L\"osung jedes in $ D $ liegende Kompaktum verl\"asst. 
+		\item in den \"Ubungen diskutieren wir obiges noch genauer und finden \"aquivalente und anschaulichere Formulierungen. 
+	\end{enumerate}
+\end{bemerkung}
+\begin{beweis}[Beweis von 8.6]
+	Aus 8.3 folgt: $ \exists\tilde\varphi\colon I\rightarrow\R $, $ I $ Intervall, $ \tilde{\varphi} $ ist L\"osung und jede andere L\"osung stimmt auf $ I $ mit $ \tilde{\varphi} $ \"uberein. Betrachte
+	\[ M=\lbrace\varphi\colon J_\varphi\rightarrow\R\mid J_\varphi\supseteq I,\varphi\text{ L\"osung}\rbrace. \]
+	Wegen 8.4 gilt $ J_{\varphi_1}\subseteq J_{\varphi_2}\Rightarrow \varphi_2|_{J_{\varphi_1}} $, sonst w\"aren $ \varphi_1,\varphi_2|_{J_{\varphi_1}} $ zwei verschiedene Fortsetzungen von $ \tilde{\varphi} $.\\
+	$ J\coloneqq\bigcup_{\varphi\in M}J_\varphi $, $ \Phi\colon J\rightarrow\R $, $ \Phi(x)=\varphi(x) $ f\"ur $ x\in J_\varphi $. Per Konstruktion kann $ \varphi $ nicht fortgesetzt werden. Es bleibt die Aussage \"uber den Rand.\\
+	Es gen\"ugt, den rechten Rand anzuschauen: Angenommen, $ G_+\subseteq D $ ist kompakt. Dann muss $ J\cap[\xi,\infty[ $ beschr\"ankt sein und es gibt zwei F\"alle:
+	\begin{description}
+		\item[1. Fall: $ J\cap [\xi,\infty[=[\xi,b[ $ mit $ b\in\R $:] 8.5 i)$ \Rightarrow \Phi$ l\"asst sich auf $ [\xi,b] $ fortsetzen. Widerspruch zur Maximalit\"at von $ J $.
+		\item[2. Fall: $ J\cap[\xi,\infty\lbrack=\lbrack\xi, b\rbrack $ mit $ b\in\R $:] D.h. $ (b,\Phi(b))\in D $, also $ \exists $L\"osung $ \psi $ in Umgebung von $ b $ mit $ \psi(b)=\Phi(b) $. Nach 8.5 ii) kann $ \Phi $ \"uber $ J $ hinaus nach rechts fortgesetzt werden.$ \lightning $
+	\end{description}
+\end{beweis}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item F\"ur $ D=\R^2 $ liefert 8.6 die Aussage von 7.9 unter schw\"acheren Voraussetzungen.
+		\item Die S\"atze 7.1 und 7 werden insofern verbessert als dass die L\"osungen bis auf den Rand fortgesetzt werden k\"onnen (gem\"a\ss\ 8.6 k\"onnen wir die L\"osung fortsetzen sodass sie dem Rand beliebig nahe kommt: Nehme $ D=\mathring Q $, und kopiere den Beweis von 8.5 i). Erkenne, dass $ A\subseteq\bar D $ kompakt auch reicht. Damit setzen wir die L\"osung $ \Phi $ auf $ [\xi,b] $ stetig fort und $ (b,\Phi(b))\in\partial D=[a_1,b_1]\times\lbrace a_2,b_2\rbrace\cup\lbrace a_1,b_1\rbrace\times[a_2,b_2] $. Hierf\"ur gen\"ugt wieder eine lokale Lipschitzbedingung).
+		\item In 8.8 k\"onnen wir auf den Rand fortsetzen, brauchen daf\"ur aber die Lipschitzbedingung auf $ [a,b]\times\R $. Mit 8.6 k\"onnen wir die Voraussetzungen zu einer lokalen Lipschitzbedingung abschw\"achen, erhalten dann aber wieder i.A. keine Fortsetzung auf den Rand, selbst wenn wir lokal Lipschitz auch auf dem Rand fordern. Andererseits erhalten wir f\"ur alle Streifen $ J\times\R $ (also auch $ J=]a,b[,[a,b], [a,b[ $) die Existenz auf ganz $ ]a,b[ $.
+    \end{enumerate}
+\end{bemerkung}

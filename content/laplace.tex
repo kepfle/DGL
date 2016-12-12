@@ -1,0 +1,28 @@
+\chapter{Methode der Laplace-Transformation}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+\begin{beweis}
+	Es gilt f\"ur die stetige Funktion $ g $:
+	\[ \forall n\geq 0:\int_0^1 r^n g(r)\dd r=0 \]
+	Also auch
+	\[ \forall\text{Polynom }p:\int_0^1 p(r) g(r)\dd r=0 \]
+	Sei $ \e>0 $ gegeben. Mit Weierstra\ss\ folgt: Es existiert ein Polynom $ p $ mit $ \max_{x\in[0,1]}|p(x)-g(x)|<\e $. Dann
+	\begin{align*} \int_0^1 g^2(r)\dd r=\int_0^1 (g(r)-p(r))g(r)\dd r+\int_0^1 p(r)g(r)\dd r\leq\int_0^1|g(r)-p(r)||g(r)|\dd r\leq\e\cdot\max_{x\in[0,1]}|g(r)|. \end{align*}
+	Da $ \e $ beliebig:
+	\[ \int_0^1 g^2(r)\dd r=0\Rightarrow g^2\equiv 0\Rightarrow g\equiv 0. \]
+	Es gilt also:
+	\[ \forall r\in]0,1]: r^{s_0}f(-\ln r)=0\Rightarrow f\equiv 0. \]
+\end{beweis}
+\begin{bemerkung}
+	Man kann nun unter Beschr\"ankung auf stetige Funktionen, explizit Formeln f\"ur $ \sL^{-1}F $ angeben, z.B. $ \sL^{-1}(F(s/a))=af(at) $ im Fall von 5.6 iii) wenn $ F=\sL f $ gilt. Eine Tabelle, auch mit konkreten Funktion, kann jeder selbst erstellen.
+\end{bemerkung}
+\begin{bemerkung}
+	Wie wir gesehen haben, kann man die Methode der Laplacetransformation anwenden kann um DGL zu l\"osen. Dies kann man mit der in 5.10 erw\"ahnten Tabelle 'nach Rezept' machen. Allerdings ist es auch hier wie in den Kapiteln vorher so, dass man an Grenzen st\"o\ss t, weil es nicht m\"oglich ist $ \sL f $ bzw. $ \sL^{-1}F $ explizit zu bilden. Ferner hat das Kapitel illustriert, dass eine ordentliche Theorie der Laplacetransformation nicht trivial ist.
+\end{bemerkung}
