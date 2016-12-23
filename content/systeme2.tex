@@ -1,0 +1,134 @@
+\chapter{Systeme linearer Differentialgleichungen}
+In Kapitel 9 hatten wir Systeme $ y'=f(x,y) $, $ f\colon\R_x\times\R_y^n\rightarrow\R^n $ angesehen. Nun betrachten wir lineare Systeme und benutzen die Notation $ x=x(t) $ statt $ y=y(x) $. D.h. wir untersuchen das System \begin{align*}
+&\dot x=A(t)x+b(t)
+\end{align*}
+mit $ A\colon I\rightarrow\R^{n\times n} $ stetig auf einem Intervall $ I\subseteq\R $  ($ \Leftrightarrow A(t)=(a_{jk}(t))_{j,k=1,...,n} $ mit $ a_{jk}\colon I\rightarrow\R $ stetig f\"ur alle $ j,k $) und $ b\colon I\rightarrow\R^n $ stetig. F\"ur $ b\equiv 0 $ ist das System \deftxt{homogen}, f\"ur $ b\not\equiv 0$ ist es \deftxt{inhomogen}.\\
+Wir suchen eine Funktion $ x\colon I\rightarrow\R^n $ mit $ \dot x(t)=A(t)x(t)+b(t) $ f\"ur $ t\in I $. Ausgeschrieben suchen wir $ x_1=x_1(t),...,x_n=x_n(t) $.
+\begin{satz}
+	Unter den obigen Voraussetzungen hat 
+	\[ (AWP)\begin{cases}
+	\dot x=A(t)x+b(t)\\ x(t_0)=\eta
+	\end{cases} \]
+	f\"ur $ t_0\in I $, $ \eta\in\R^n $ genau eine L\"osung auf $ I $.
+\end{satz} 
+\begin{beweis}
+	F\"ur $ x_1,x_2\in\R^n $ haben wir
+	\begin{align*}
+	\norm{A(t)x_1+b(t)-(A(t)x_2+b(t))}&=\norm{A(t)(x_1-x_2)}\\
+	&\leq\norm{A(t)}\norm{x_1-x_2}
+	\end{align*}
+	wobei $ \norm{B}=\sup_{\norm{x}\leq 1}\norm{Bx} $ f\"ur $ B\in\R^{n\times n} $ genommen werden kann. $ t\mapsto\norm{A(t)} $ ist stetig, d.h. f\"ur kompaktes $ I $ bekommen wir die Lipschitzbedingung. Wenn nicht, dann machen wir's lokal und setzen dann mit lokaler Lipschitzbedingung bis zum Rand (oder bis $ \infty $) fort.\\
+	F\"ur $ (t,x) $, $ (\bar t,\bar x)\in I\times\R^n $ gilt 
+	\begin{align*} \norm{f(t,x)-f(\bar t,\bar x)}&=\norm{A(t)x-b(t)-(A(\bar t)\bar x+b(\bar t)}\\&\leq\norm{A(t)x-A(\bar t)x+A(\bar t)x-A(\bar t)bar x}+\norm{b(t)-b(\bar t)}\\&\leq\norm{(A(t)-A(\bar t))x}+\norm{A(\bar t)(x-\bar x)}+\norm{b(t)-b(\bar t)}\\&
+	\leq\norm{A(t)-A(\bar t)}\norm{x}+\norm{A(\bar t)}\norm{x-\bar x}+\norm{b(t)-b(\bar t)} \end{align*}
+	weshalb $ f(t,x)=A(t)x+b(t) $ stetig auf $ I\times\R^n $ ist.
+\end{beweis}
+Wir betrachten nun zun\"achst das homogene System. Es ist klar, dass die Menge der L\"osungen
+\[ L_H=\lbrace x\colon I\rightarrow\R^n\mid\forall t\in I:\dot x(t)=A(t)x(t)\rbrace \]
+ein Vektorraum ist.
+\begin{satz}
+	Unter den obigen Voraussetzungen seien $ x_1,...,x_k\in L_H $. Dann sind die folgenden Aussagen \"aquivalent.
+	\begin{enumerate}
+		\item $ x_1,...,x_k $ sind linear unabh\"angig.
+		\item $ \forall t\in I: x_1(t),...,x_k(t) $ linear unabh\"angig.
+		\item $ \exists t\in I: x_1(t),...,x_k(t) $ linear unabh\"angig.
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{description}
+		\item[ii)$ \Rightarrow $iii)$ \Rightarrow $i):] klar.
+		\item[i)$ \Rightarrow $ii):] Seien $ x_1,...,x_k $ linear unabh\"angig, aber es existiere ein $ \tau\in I $ mit $ x_1(\tau),...,x_k(\tau) $ linear abh\"angig. D.h. es gibt $ \alpha_1,...,\alpha_k\in\R $ mit $ \sum_{i=1}^{k}\alpha_j x_j(\tau)=0 $ und nicht alle $ \alpha_j $ sind Null.
+		Definiere $ x(t)\coloneqq\sum_{j=1}^{k}\alpha_j x_j(t) $. Dies ist eine L\"osung und erf\"ullt die Anfangsbedingung $ x(\tau)=0 $. Also muss $ x(t)\equiv 0 $ wegen der Eindeutigkeit sein. Dies widerspricht der linearen unabh\"angigkeit der $ x_1,...,x_k $.
+	\end{description}
+\end{beweis}
+\begin{satz}
+	Unter unseren generellen Voraussetzungen gilt $ \dim L_H=n $.
+\end{satz}
+\begin{beweis}
+	Sei $ e_j=(0,...,0,1_j,0,...,0) $, $ j=1,...,n $. Fixiere $ \tau\in I $. Dann existieren nach Satz 1 $ x_1,...,x_n\in L_H $ mit $ x_j(\tau)=e_j $ f\"ur $ j=1,...,n $. Nach Satz 2 iii) sind $ x_1,...,x_n $ linear unabh\"angig, d.h. $ \dim L_H\geq n $. $ n+1 $ L\"osungen sind wegen Satz 2 iii) stets linear abh\"angig. 
+\end{beweis}
+\begin{definition}
+	Eine Basis $ x_1,...,x_n $ von $ L_H $ hei\ss t \deftxt{Fundamentalsystem} von L\"osungen von $ \dot x=A(t)x $. $ X=[x_1, x_2,..., x_n] $ hei\ss t dann \deftxt{Fundamentalmatrix} von $ \dot x= A(t)x $.
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item In obiger Notation kann man schreiben $ \dot X=A(t)X(t) $.
+		\item Es gilt $ L_H=\lbrace X(t)c\mid c\in\R^n\rbrace $, denn $ X(t)c=c_1x_1+...+c_nx_n $.
+		\item Die eindeutige L\"osung des AWPs $ \dot x=A(t) $, $ x(t_0)=\eta $, ist gegeben durch $ x(t)=X(t)X(t_0)^{-1}\eta $: $ x(t_0) $ ist per Definition invertiertbar. $ x(t)=X(t)c $ mit $ c=X(t_0)^{-1}\eta\in\R^n $ ist nach ii) eine L\"osung und $ x(t_0)=X(t_0)X(t_0)^{-1}\eta=\eta $.
+		\item $ Y(t)\coloneqq X(t)X(t_0)^{-1} $ ist eine Fundamentalmatrix von $ \dot y=A(t)x $: Die Spalten von $ Y $ sind Linearkombinationen der Spalten von $ X $, d.h. sie liegen in $ L_H $. Wegen $ Y(t_0)=X(t_0)X(t_0)^{-1}=I $ sind mit Satz 2 iii) die Spalten von $ Y $ linear unabh\"angig.
+	\end{enumerate}
+\end{bemerkung}
+\begin{beispiel}
+	\[ \begin{cases}
+	\dot x_1=\frac{1}{t}x_1-x_2\\
+	\dot x_2=\frac{1}{t^2}x_1-\frac{2}{t}x_2
+	\end{cases} \]
+	d.h. $ A(t)=\begin{pmatrix}
+	t^{-1}&-1\\t^{-2}&2t^{-1}
+	\end{pmatrix} $ auf $ I=]0,\infty[ $. $ x^{(1)}(t)=\binom{t^2}{-t} $, $ x^{(2)}(t)=\binom{-t^2\ln t}{t+t\ln t} $ sind linear unabh\"angige L\"osungen.
+	\[ \dot x^{(1)}(t)=\binom{2t}{1},\quad A(t)x^{(1)}(t)=\begin{pmatrix}
+	t^{-1}&-1\\t^{-2}&2t^{-1}\end{pmatrix}\begin{pmatrix}
+	t^2\\-t
+	\end{pmatrix}= \begin{pmatrix}
+	t+t\\1-2
+	\end{pmatrix}= \begin{pmatrix}
+	2t\\-1
+	\end{pmatrix} \]
+	\[ \dot x^{(2)}(t)=\binom{-2t\ln t-t}{2+\ln t},\quad A(t)x^{(2)}(t)=\begin{pmatrix}
+	t^{-1}&-1\\t^{-2}&2t^{-1}\end{pmatrix}\begin{pmatrix}		-t^2\ln t\\t+t\ln t
+	\end{pmatrix}= \begin{pmatrix}		
+	-t\ln t-t-t\ln t\\-\ln t+2+2\ln t
+	\end{pmatrix}= \begin{pmatrix}
+	-2t\ln t-t\\2+\ln t
+	\end{pmatrix} \]
+	$ x^{(1)}(1)=\binom{1}{-1} $ und $ x^{(2)}(1)=\binom{0}{1} $ sind linear unabh\"angig in $ \R^2 $. Nach Satz 2 sind $ x^{(1)} $ und $ x^{(2)} $ dann linear unabh\"angig auf $ I $. Also ist die Fundamentalmatrix $ X(t)= \begin{pmatrix}
+	t^2&-t^2\ln t\\-t&t+t\ln t
+	\end{pmatrix} $ und
+	\[ x_{allg}(t)=X(t)c=c_1\binom{t^2}{-t}+c_2\binom{-t^2\ln t}{t+t\ln t} \]
+	mit $ c=\binom{c_1}{c_2}\in\R^2 $. F\"ur die Anfangsbedingung $ x_1(1)=\eta_1 $, $ x_2(1)=\eta_2 $ ergibt sich
+	\[ X(1)=\begin{pmatrix}
+	1^2&-1^2\ln 1\\-1&1+1\ln 1
+	\end{pmatrix}=\begin{pmatrix}
+	1&0\\-1&1
+	\end{pmatrix}\Rightarrow X(1)^{-1}=\begin{pmatrix}
+	1&0\\1&1
+	\end{pmatrix}\Rightarrow Y(t)=X(t)X(1)^{-1}=\begin{pmatrix}
+	t^2-t^2\ln t&-t^2\ln t\\t\ln t&t+t\ln t
+	\end{pmatrix} \]
+	Nun ist $ X(t)=Y(t)\eta $ die L\"osung des AWPs mit $ \eta=\binom{\eta_!}{\eta_2} $ f\"ur jedes $ \eta $(!).
+\end{beispiel}
+Nun zum inhomogenen System. Wir lassen alle Voraussetzungen wie bisher, setzen
+\[ L_I=\lbrace x\colon I\rightarrow\R^n\mid\forall t\in I:\dot x(t)=A(t)x(t)+b(t)\rbrace. \]
+Dann ist klar, dass $ L_I=L_H+x^{part}_{inhom} $ f\"ur  $ x_{inhom}^{part}\in L_I $ beliebig gilt. Haben wir also eine Fundamentalmatrix $ X $ von $ \dot x=A(t)x $, dann gilt $ x^{allg}_{inhom}=X(t)c+x_{inhom}^{part}=c_1x_1+...+c_nx_n+x_{inhom}^{part} $ und wir m\"ussen (wieder einmal) eine partikul\"are L\"osung der inhomogenen DGL finden. Das geht (wieder einmal) per Variation der Konstanten. 
+\begin{satz}
+	Unter den Voraussetzungen des Kapitels sei $ X $ eine Fundamentalmatrix f\"ur $ \dot x=Ax $.
+	\begin{enumerate}
+		\item Man erh\"alt eine L\"osung der inhomogenen DGL $ \dot x=A(t)x+b(t) $ durch den Ansatz $ x_p(t)=X(t)c(t) $. Daraus ergibt sich
+		\[ c(t)=c+\int_{t_0}^t X(\tau)^{-1}b(\tau)\dd\tau \]
+		
+		mit $ c\in\R^n $, $ t_0\in I $.
+		\item Das AWP $ \dot x=A(t)x+b(t) $, $ x(t_0)=\eta $ hat die L\"osung
+		\[ x(t)=X(t)X(t_0)^{-1}\eta+\int_{t_0}^tX(t)X(\tau)^{-1}b(\tau)\dd\tau \]
+		('Variation der Konstanden-Formel').
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}
+		\item \[ x=Xc\Rightarrow \dot x=\dot Xc+X\dot c=AXc+X\dot c \]
+		denn: 
+		\begin{align*} \frac{\dd}{\dd t}(Xc)&=\frac{\dd}{\dd t}\left(\sum_{j=1}^{n}x_{ij}c_j\right)_{i=1,...,n}\\&=\left(\sum_{j=1}^{n}\dot x_{ij}c_j+x_{ij}\dot c_j\right)_{i=1,..,n}\\&=\left(\sum_{j=1}^{n}\dot x_{ij}c_j \right)_{i=1,..,n}+\left(\sum_{j=1}^{n}x_{ij}\dot c_j\right)_{i=1,...,n}\\&=\dot Xc+X\dot c \end{align*}
+		Nun $ \dot x=Ax+b $ einsetzen:
+		\[ AXc+X\dot c=AXc+b\Rightarrow X\dot c=b\Rightarrow\dot c=X^{-1}b\Rightarrow c(t)=\int_{t_0}^t X(\tau)^{-1}b(\tau)\dd\tau+c \]
+		wbei $ t,t_0\in I $.
+		\item Bemerkungen vor dem Satz$ \Rightarrow x_{allg}^{inhom}=X(t)c+X(t)\int_{t_0}^tX(\tau)^{-1}b(\tau)\dd \tau $ mit $ c\in\R^n $.
+		\[ X(t_0)=\eta\Rightarrow x_{allg}^{inhom}(t_0)=X(t_0)+0=\eta\Rightarrow c=X(t_0)^{-1}\eta \]
+	\end{enumerate}
+\end{beweis}
+\begin{bemerkung}
+	Man kann Ableitung und (Riemann-)Integral f\"ur Funktionen $ f\colon I\rightarrow\R^m $ abstrakt definieren und zeigen, dass dies genau auf koordinatenweises Ableiten bzw. Integrieren hinausl\"auft.\\
+	F\"ur Ableitungen kennen Sie das: Die Ableitung von $ f $ ist $ JF=\begin{pmatrix}
+	f_1\\\vdots\\f_m
+	\end{pmatrix} $. F\"ur das Riemann-Integral ist das straight forward.\\
+	Haben wir $ A\colon I\rightarrow\R^{n\times n} $, so ist das vielleicht ungewohnt, aber da $ \R^{n\times n}\simeq\R^n $ ist, egal welche Normen wir verwenden, dann sieht man, dass es sich doch nur um einen Spezialfall handelt.
+\end{bemerkung}

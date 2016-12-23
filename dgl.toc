@@ -10,3 +10,5 @@
 \contentsline {chapter}{\numberline {9}Differentialgleichungen h\"oherer Ordnung als System erster Ordnung}{41}{chapter.9}
 \contentsline {chapter}{\numberline {10}Lineare Differentialgleichungen h\"oherer Ordnung}{43}{chapter.10}
 \contentsline {chapter}{\numberline {11}Funktionenreihen und das L\"osen von linearen Differentialgleichungen}{51}{chapter.11}
+\contentsline {chapter}{\numberline {12}Systeme linearer Differentialgleichungen}{53}{chapter.12}
+\contentsline {chapter}{\numberline {13}Lineare Differentialgleichungs-Systeme mit konstanten Koeffizienten}{59}{chapter.13}

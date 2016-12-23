@@ -1,0 +1,108 @@
+\chapter{Lineare Differentialgleichungs-Systeme mit konstanten Koeffizienten}
+Sei $ A\in\R^{n\times n} $, $ t_0\in\R $, $ \eta\in\R^n $. Wir betrachten das AWP
+\[ (\ast)\begin{cases}
+\dot x=Ax\\x(t_0)=\eta
+\end{cases}, \]
+also den Spezialfall der Situation in Kapitel 12, in dem $ A(t)\equiv A $ konstant und $ b\equiv 0 $ ist. Wenn wir f\"ur $ (\ast) $ eine Fundamentalmatrix haben, k\"onnen wir per Variation der Konstanten auch $ \dot x=Ax+b $ mit $ b\neq 0 $ nicht-konstant behandeln.\\
+In Fall $ n=1 $ ist $ A=a\in\R $ und wir haben nur $ \frac{\dd x}{\dd t}=ax $, $ x(t_0)=\eta $ zu l\"osen. Hier kennen wir die L\"osung:
+\[ x(t)=e^{(t-t_0)a}\eta. \]
+Formales Rechnen suggeriert, dass
+\[ x(t)=e^{t-t_0)A}\eta \]
+f\"ur $ n>1 $ das AWP $ (\ast) $ l\"osen k\"onnte. Das ist tats\"achlich richtig, wir m\"ussen aber erkl\"aren wir $ e^{tB} $ f\"ur eine Matrix $ B $ definiert ist und dies so machen, dass $ t\mapsto e^{tB} $ differenzierbar mit Ableitung $ Be^{tB} $ wird.\\
+Da wir sp\"ater Eigenwerte von Matrizen berechnen werden (\"ahnlich wie im vorletzten Kapitel) sind wir gut beraten von hier an komplex zu arbeiten, wenn auch unser Interesse auf reelle Differentialgleichungssysteme beschr\"ankt bleibt.
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item $ \R^{n\times n} $ und $ \C^{n\times n} $ sind endlich dimensionale Vektorr\"aume, auf ihnen sind alle Normen \"aquivalent und bzgl. jeder Norm liegt Konvergenz genau dann vor, wenn alle Koordinaten bzw, Eintr\"age konvergieren. Grenzwerte, die Existenz von Ableitungen, deren Wert, etc. sind unabh\"angig bon der gew\"ahlten Norm. Absch\"atzungen und darin vorkommende Konstanten k\"onnen wir der Norm abh\"angen.
+		\item Wir w\"ahlen eine Norm auf $ \C^n $ und eine auf $ \C^{n\times n} $ f\"ur die gelten
+		\begin{itemize}
+			\item $ \forall x\in\C^n $, $ A\in\C^{n\times n} $: $ \norm{Ax}\leq\norm{A}\norm{x}, $
+			\item $ \forall A,B\in\C^{n\times n} $: $ \norm{AB}\leq\norm{A}\norm{B} $.
+		\end{itemize}
+		\item Sei $ (A_k)_{k\in\N}\subseteq\C^{n\times n} $ eine Folge von Matrizen, dann ist $ \sum_{k=0}^{\infty}A_k $ wohldefiniert (=Folge der Partialsummen bzw. deren Grenzwerte in $ \C^{n\times n} $). Die Folge der Partialsummen konvergiert genau dann, wenn sie koordinatenweise konvergiert. Da $ \C^{n\times n} $ ein Banachraum mist, beweist man wie in $ \R $, dass gilt
+		\[ \sum_{k=0}^{\infty}\norm{A_k}<\infty\Rightarrow\sum_{k=0}^{\infty}A_k\quad\text{konvergiert}. \]
+	\end{enumerate}
+\end{bemerkung}
+\begin{beispiel}
+	\begin{enumerate}
+		\item[]
+		\item $ n=2 $, $ A=\begin{pmatrix}
+		1&1\\0&1
+		\end{pmatrix} $, betrachte $ \sum_{k=0}^{\infty}A^k $.
+		\[ A^0=I=\begin{pmatrix}
+		1&0\\0&1
+		\end{pmatrix},\quad A^1=\begin{pmatrix}
+		1&1\\0&1
+		\end{pmatrix},\quad A^2=\begin{pmatrix}
+		1&2\\0&1
+		\end{pmatrix},\quad A^3=\begin{pmatrix}
+		1&3\\0&1
+		\end{pmatrix},... \]
+		Also:
+		\[ \sum_{k=0}^{N}A^k=I+A^1+...+A^N=\begin{pmatrix}
+		N+1&0+1+2+...+N\\
+		0&N+1
+		\end{pmatrix} \]
+		ist nicht konvergent f\"ur $ N\to\infty $.
+		\item $ A\in\C^{n\times n} $, betrachte $ \sum_{k=0}^{\infty}\frac{A^k}{k!} $.
+		\[ \sum_{k=0}^{N}\norm{\frac{A^k}{k!}}\leq\sum_{k=0}^{N}\frac{\norm{A}^k}{k!}\xrightarrow{N\to\infty}e^{\norm{A}}<\infty \]
+		Somit ist $ \sum_{k=0}^{\infty}\frac{A^k}{k!} $ konvergent, d.h. $ \sum_{k=0}^{\infty}\frac{A^k}{k!}\in\C^{n\times n} $.
+	\end{enumerate}
+\end{beispiel}
+\begin{definition}
+	F\"ur $ A\in\C^{n\times n} $ ist $ e^A\coloneqq\sum_{k=0}^{\infty}\frac{A^k}{k!} $ gem\"a\ss\ Bemerkung 2 i) wohldefiniert. Die Abbildung $ T\colon\R\rightarrow\C^{n\times n} $, $ t\mapsto e^{tA} $ hei\ss t \deftxt{Matrixexponentialfunktion}.
+\end{definition}
+\begin{lemma}
+	\bullshit
+	\begin{enumerate}
+		\item Sind $ A,B\in\C^{n\times n} $ mit $ AB=BA $, so gilt $ e^{A+B}=e^Ae^B $.
+		\item Sei $ A\in\C^{n\times n} $, $ t,h\in\C $. Dann gilt $ (e^A)^{-1}=e^{-A} $, $ e^{(t+h)A}=e^{tA}e^{hA} $, $ e^{A+hI}=e^he^A $.
+	\end{enumerate}
+\end{lemma}
+\begin{beweis}
+	\begin{enumerate}
+		\item Betrachte das Cauchyprodukt und gehe wie in der Analysis 1 vor.
+		\item \[ e^Ae^{-A}=e^{A-A}=e^0=I \]
+		Genauso $ e^{-A}e^A=I $. Die zwei anderen Gleichungen folgen aus i).
+	\end{enumerate}
+\end{beweis}
+\begin{satz}
+	Sei $ A\in\C^{n\times n} $, $ x\colon\R\rightarrow\C^n $ differenzierbar.
+	\begin{enumerate}
+		\item Die Matrixexponentialfunktion $ T\colon\R\rightarrow\C^{n\times n} $, $ T(t)=e^{tA} $, ist differenzierbar und es gibt $ \frac{\dd}{\dd t}e^{tA}=Ae^{tA} $.
+		\item Es gilt \[ \frac{\dd}{\dd t}(e^{tA}x(t))=e^{tA}\dot x(t)+Ae^{tA}x(t). \]
+	\end{enumerate}
+\end{satz}
+\begin{beweis}
+	\begin{enumerate}
+		\item Fixiere $ t\in\R $, sei $ h\in\R $. Dann
+		\begin{align*} \frac{T(t+h)-T(t)}{h}&=\frac{e^{(t+h)A}-e^{tA}}{h}\\&=\frac{e^{tA}e^{hA}-e^{tA}}{h}\\&=e^{tA}\frac{e^{hA-I}}{h}\\&=e^{tA}\left(A+\frac{hA^2}{2!}+\frac{h^2A^3}{3!}+...\right)\\&=e^{tA}A+\alpha(h) \end{align*}
+		und
+		\[ \norm{\alpha(h)}=\underbrace{\norm{e^{tA}}}_{\leq e^{\norm{tA}}}|h|\underbrace{\norm{\frac{A^2}{2}+\frac{hA^3}{3!}+...}}_{\leq\frac{\norm{A}^2}{2!}+\frac{|h|\norm{A}^3}{3!}+...}\leq |h|e^{\norm{tA}}\sum_{k=0}^{\infty}\frac{\norm{A}^k}{k!}=|h|e^{\norm{tA}}e^{\norm{A}}\xrightarrow{h\to 0}0. \]
+		Wegen
+		\[ e^{tA}A=\left(\sum_{k=0}^{\infty}\frac{(tA)^k}{k!}\right)A=\sum_{k=0}^{\infty}\frac{(tA)^kA}{k!}=\sum_{k=0}^{\infty}A\frac{(tA)^k}{k!}=A\sum_{k=0}^{\infty}\frac{(tA)^k}{k!}=Ae^{tA}. \]
+		\item wie vorhin.
+	\end{enumerate}
+\end{beweis}
+Wir haben also unsere anf\"anglichen Probleme unseren W\"unschen gem\"a\ss\ beantwortet und bekommen
+\begin{satz}
+	Sei $ A\in\R^{n\times n} $, $ t_0\in\R $, $ \eta\in\R^n $. Dann hat das AWP
+	\[ \begin{cases}
+	\dot x=Ax\\x(t_0)=\eta
+	\end{cases} \]
+	genau eine L\"osung, die auf ganz $ \R $ existiert und durch $ x(t)=e^{(t-t_0)A}\eta $ gegeben ist.
+\end{satz}
+\begin{beweis}
+	Existenz und Eindeutigkeit haben wir schon erledigt, wir m\"ussen nur zeigen, dass $ x $ wie oben das AWP l\"ost:
+	\[ \dot x(t)=\frac{\dd}{\dd t}e^{(t-t_0)A}\eta=Ae^{(t-t_0)A}\eta=Ax(t). \]
+	\[ x(t_0)=e^{(t_0-t_0)A}\eta=I\eta=\eta \]
+\end{beweis}
+\begin{korollar}
+	\bullshit
+	\begin{enumerate}
+		\item $ e^{tA} $ ist eine Fundamentalmatrix f\"ur $ \dot x=Ax $, vgl Kap. 12, Satz 5.
+		\item Das AWP $ \dot x=Ax+b(t) $, $ x(t_0)=\eta $, hat
+		\[ x(t)=e^{(t-t_0)A}\eta+\int_{t_0}^te^{(t-\tau)A}b(\tau)\dd\tau \]
+		als L\"osung.
+	\end{enumerate}
+\end{korollar}
