@@ -1,8 +1,32 @@
 \chapter{Fortsetzung von L\"osungen}
+Im Folgenden sei $ D\subseteq\R^2 $ offen, $ f\colon D\rightarrow\R $ und $ (\xi,\eta)\in D $. Wir betrachten
+\[ \begin{cases}
+y'=f(x,y)\\y(\xi)=\eta
+\end{cases}. \]
+Wir erkennen bereits Bedingungen an $ f $, die garantieren, dass eine eindeutige L\"osung $ \varphi\colon I\rightarrow\R $ des AWP existiert, wobei $ I\subseteq\R $ ein Intervall mit $ \xi\in I $ ist. Wir wollen jetzt herausfinden, unter welchen Bedingungen wir $ \varphi $ (eindeutig) fortsetzen k\"onnen.
+\begin{definition}
+	Sei $ f\colon D\rightarrow\R $, $ D\subseteq\R^2 $ offen. $ f $ gen\"ugt einer \deftxt{lokalen Lipschitzbedinung bzgl. der zweiten Variablen}, wenn f"ur jeden Punkt $ (x0,y_0)\in D $ eine Umgebung $ U $ von $ (x0,y_0) $ und ein $ L>0 $ existiert, so dass
+	\[ |f(x,y_1)-f(x,y_2)|<L|y_1-y_2|\forall(x,y_1), (x,y_2)\in U \]
+	gilt.
+\end{definition}
+\begin{bemerkung}
+	\begin{enumerate}
+		\item[]
+		\item Ist $ (X,d) $ metrischer Raum und $ x\in X $, so ist $ U\subseteq X $ eine Umgebung von $ x $, wenn es ein $ r>0 $ gibt mit $ x\in B_r(x)\subseteq U $.
+		\item $ f $ gen\"ugt einer lokalen Lipschitzbedingung bzgl. $ y $ genau dann, wenn f"ur jeden Punkt eine Umgebung existiert, auf der $ f $ einer Lipschitzbedingung bzgl. $ y $ gen\"ugt, d.h. $ \forall (x_0,y_0)\in D\exists $Umgebung $ U $ von $ (x_0,y_0) $: $ f|_U $ erf\"ullt Lipschitzbedinung bzgl. $ y $. Insbesondere d\"urfen die Konstanten $ L $ von der Umgebung (bzw. von $ (x_0,y_0) $) abh\"angen.
+		\item Wenn $ f\colon D\rightarrow\R $ stetig und einer lokalen Lipschitzbedingung bzgl. $ y $ gen\"ugt, dann k\"onnen wir eine Umgebung von $ (\xi,\eta) $ finden in der $ f $ eine Lipschitbedingung bzgl. $ y $ erf\"ullt. In dieser Umgebung k\"onnen wir einen Quader einpassen und dann die erste Version des Satzes von Picard-Lindel\"of anwenden um eine eindeutige lokale L\"osung von $ (\ast) $ zu finden.
+	\end{enumerate}
+\end{bemerkung}
+\begin{satz}[\"Uber lokale Losbarkeit]
+	Sei $ D\subseteq\R $ offen, $ f\colon D\rightarrow\R $ stetig und gen\"uge in $ D $ einer lokalen Lipschitzbedingung bzgl. $ y $. Dann ist das AWP $ (\ast) $ f\"ur jedes $ (\xi,\eta) $ lokal eindeutig l\"osbar, d.h. in einer Umgebung von $ \xi $ existiert genau eine L\"osung.
+\end{satz}
+\begin{lemma}
+	Sei $ D\subseteq\R^2 $ offen, $ f\colon D\rightarrow\R $ stetig und gen\"uge in $ D $ einer lokalen Lipschitzbedingung bzgl. $ y $. Sei $ \varphi $ L\"osung des AWP $ (\ast) $ auf $ ]\tilde a, \tilde b[ $ und sei $ ]a,b[\supset]\tilde a,\tilde b[ $. Dann gibt es h\"ochstens eine Fortsetzung $ \tilde{\varphi} $ von $ \varphi $ auf $ ]a,b[ $, die das AWP l\"ost.
+\end{lemma}
 \begin{lemma}
 	Sei $ D\subseteq\R^2 $ und $ f\colon D\rightarrow\R $ stetig.
 	\begin{enumerate}
-		\item Sei $ \Phi\colon[\xi,b[\rightarrow\R $ eine L\"osung der DGL $ y'=f(x,y) $, die in einer kompakten Menge $ A\subseteq D $ verl\"auft. Dann l\"asst sich $ \Phi $ auf $ [\xi,] $ als L\"osung fortsetzen.
+		\item Sei $ \Phi\colon[\xi,b[\rightarrow\R $ eine L\"osung der DGL $ y'=f(x,y) $, die in einer kompakten Menge $ A\subseteq D $ verl\"auft. Dann l\"asst sich $ \Phi $ auf $ [\xi,\eta] $ als L\"osung fortsetzen.
 		\item Sei $ \Phi\colon[\xi,b]\rightarrow\R $ eine L\"osung, $ \psi\colon[b,c]\rightarrow\R $ eine L\"osung der DGL $ y'=f(x,y) $ und $ \psi(b)=\Phi(b) $. Dann ist
 		\[ u(x)=\begin{cases}
 		\Phi(x)&x\in[\xi,b]\\\psi(x)&x\in]b,c]
